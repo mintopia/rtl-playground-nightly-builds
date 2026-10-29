@@ -59,7 +59,7 @@ a:hover { text-decoration-thickness: 2px; }
 .skip:focus { top: 8px; }
 
 .wrap { max-width: 1120px; margin: 0 auto; padding: 0 20px; }
-.wide { max-width: none; }
+main.wide { max-width: 100%; width: fit-content; }
 
 .band { background: var(--brand); color: var(--brand-ink); }
 .band .wrap { display: flex; flex-wrap: wrap; align-items: center; gap: 0 28px; }

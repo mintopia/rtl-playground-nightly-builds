@@ -97,9 +97,9 @@ def page(title, root, body, current, wide=False, script=""):
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{e(title if title == SITE else f"{title} – {SITE}")}</title><link rel="stylesheet" href="{root}style.css"></head>
 <body><a class="skip" href="#main">Skip to content</a>
-<header class="band"><div class="wrap{w}"><a class="name" href="{root}">{SITE}</a><nav aria-label="Site">{links}</nav></div></header>
+<header class="band"><div class="wrap"><a class="name" href="{root}">{SITE}</a><nav aria-label="Site">{links}</nav></div></header>
 <main id="main" class="wrap{w}">{body}</main>
-<footer class="wrap{w}">Unofficial nightly builds of <a href="https://github.com/{UPSTREAM}">{UPSTREAM}</a>. Check the model and board match your switch before flashing.</footer>
+<footer class="wrap">Unofficial nightly builds of <a href="https://github.com/{UPSTREAM}">{UPSTREAM}</a>. Check the model and board match your switch before flashing.</footer>
 {f"<script>{script}</script>" if script else ""}
 </body></html>"""
 
