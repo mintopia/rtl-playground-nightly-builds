@@ -43,17 +43,10 @@ jobs:
           docker build --build-arg SDCC_TOOLCHAIN="$toolchain" -f toolchain/Dockerfile -t "$image" upstream
           docker push "$image"
 
-      - name: Delete untagged versions
-        uses: actions/delete-package-versions@v5
+      # Index-aware: plain untagged deletion removes the child manifests a tagged image needs
+      - name: Keep 3 newest toolchains, drop untagged
+        uses: dataaxiom/ghcr-cleanup-action@v1
         with:
-          package-name: rtl-playground-toolchain
-          package-type: container
-          delete-only-untagged-versions: true
-          min-versions-to-keep: 0
-
-      - name: Keep 3 newest toolchains
-        uses: actions/delete-package-versions@v5
-        with:
-          package-name: rtl-playground-toolchain
-          package-type: container
-          min-versions-to-keep: 3
+          package: rtl-playground-toolchain
+          keep-n-tagged: 3
+          delete-untagged: true
