@@ -1,0 +1,177 @@
+name: Nightly
+
+on:
+  schedule:
+    - cron: '0 2 * * *'
+  workflow_dispatch:
+    inputs:
+      force:
+        description: Build even if upstream is unchanged
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+  packages: write
+
+concurrency:
+  group: nightly
+
+env:
+  UPSTREAM: logicog/RTLPlayground
+  KEEP_NIGHTLIES: 14
+
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    outputs:
+      skip: ${{ steps.info.outputs.skip }}
+      sha: ${{ steps.info.outputs.sha }}
+      image: ${{ steps.info.outputs.image }}
+      image_exists: ${{ steps.info.outputs.image_exists }}
+      machines: ${{ steps.info.outputs.machines }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: ${{ env.UPSTREAM }}
+          path: upstream
+
+      - uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - id: info
+        env:
+          GH_TOKEN: ${{ github.token }}
+          FORCE: ${{ inputs.force }}
+        run: |
+          cd upstream
+          sha=$(git rev-parse HEAD)
+          last=$(gh release view nightly -R "$GITHUB_REPOSITORY" --json body -q .body 2>/dev/null | grep -oE '[0-9a-f]{40}' | head -1 || true)
+          skip=false
+          if [ "$sha" = "$last" ] && [ "$FORCE" != "true" ]; then skip=true; fi
+
+          image="ghcr.io/${GITHUB_REPOSITORY_OWNER,,}/rtl-playground-toolchain:sdcc-$(cat sdcc/* | cksum | cut -d' ' -f1)"
+          image_exists=false
+          if docker manifest inspect "$image" >/dev/null 2>&1; then image_exists=true; fi
+
+          # Same rule as upstream Makefile MACHINE_DEFS: has .c and .h, not *_init.c
+          machines=$(cd machine && LC_ALL=C comm -12 \
+            <(ls *.h | sed 's/\.h$//' | LC_ALL=C sort) \
+            <(ls *.c | grep -v '_init\.c$' | sed 's/\.c$//' | LC_ALL=C sort) \
+            | jq -Rsc 'split("\n") | map(select(. != ""))')
+
+          {
+            echo "skip=$skip"
+            echo "sha=$sha"
+            echo "image=$image"
+            echo "image_exists=$image_exists"
+            echo "machines=$machines"
+          } >> "$GITHUB_OUTPUT"
+          echo "upstream $sha, last nightly ${last:-none}, skip=$skip, image $image exists=$image_exists"
+
+  toolchain:
+    needs: prepare
+    if: needs.prepare.outputs.skip != 'true' && needs.prepare.outputs.image_exists != 'true'
+    uses: ./.github/workflows/toolchain.yml
+    with:
+      ref: ${{ needs.prepare.outputs.sha }}
+
+  build:
+    needs: [prepare, toolchain]
+    if: ${{ !cancelled() && needs.prepare.outputs.skip != 'true' && needs.toolchain.result != 'failure' }}
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    strategy:
+      fail-fast: false
+      matrix:
+        machine: ${{ fromJSON(needs.prepare.outputs.machines) }}
+    container:
+      image: ${{ needs.prepare.outputs.image }}
+      credentials:
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+    env:
+      M: ${{ matrix.machine }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: ${{ env.UPSTREAM }}
+          ref: ${{ needs.prepare.outputs.sha }}
+
+      - name: Build firmware
+        run: |
+          ln -s /opt/toolchain toolchain
+          make MACHINE="$M"
+
+      - name: Build OEM upgrade image
+        continue-on-error: true
+        run: make -C installer
+
+      - name: Stage
+        run: |
+          mkdir dist
+          bin=$(ls output/"$M"/rtlplayground-*-"$M".bin)
+          cp "$bin" dist/
+          oem=installer/output/rtlplayground_oem_upgrade.bin
+          if [ -f "$oem" ]; then cp "$oem" "dist/$(basename "$bin" .bin)-oem_upgrade.bin"; fi
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: fw-${{ matrix.machine }}
+          path: dist/
+          retention-days: 1
+
+  publish:
+    needs: [prepare, build]
+    if: ${{ !cancelled() && needs.prepare.outputs.skip != 'true' && needs.build.result != 'skipped' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: fw-*
+          path: artifacts
+
+      - name: Collect
+        env:
+          MACHINES: ${{ needs.prepare.outputs.machines }}
+          SHA: ${{ needs.prepare.outputs.sha }}
+        run: |
+          mkdir dist
+          built=() failed=()
+          for m in $(jq -r '.[]' <<<"$MACHINES"); do
+            if [ -d "artifacts/fw-$m" ]; then built+=("$m"); cp artifacts/fw-"$m"/* dist/; else failed+=("$m"); fi
+          done
+          total=$(jq length <<<"$MACHINES")
+          if [ ${#built[@]} -eq 0 ]; then echo "::error::all $total machines failed"; exit 1; fi
+          (cd dist && sha256sum * > SHA256SUMS)
+          {
+            echo "Upstream: $UPSTREAM@$SHA"
+            echo
+            echo "Built ${#built[@]}/$total machines."
+            if [ ${#failed[@]} -gt 0 ]; then
+              echo
+              echo "Failed:"
+              printf -- '- %s\n' "${failed[@]}"
+            fi
+          } > notes.md
+          cat notes.md
+
+      - name: Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          SHA: ${{ needs.prepare.outputs.sha }}
+        run: |
+          tag="nightly-$(date -u +%Y%m%d)-${SHA:0:7}"
+          gh release delete "$tag" --cleanup-tag -y 2>/dev/null || true
+          gh release create "$tag" dist/* --prerelease --title "$tag" --notes-file notes.md
+
+          gh release delete nightly --cleanup-tag -y 2>/dev/null || true
+          gh release create nightly dist/* --prerelease --title "Nightly (latest: $tag)" --notes-file notes.md
+
+          gh release list --limit 200 --json tagName,createdAt \
+            -q "[.[] | select(.tagName | startswith(\"nightly-\"))] | sort_by(.createdAt) | reverse | .[$KEEP_NIGHTLIES:] | .[].tagName" \
+            | xargs -r -n1 gh release delete --cleanup-tag -y

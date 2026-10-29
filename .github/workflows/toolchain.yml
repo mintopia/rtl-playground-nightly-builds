@@ -1,0 +1,59 @@
+name: Toolchain image
+
+on:
+  schedule:
+    - cron: '0 1 * * 0'
+  workflow_dispatch:
+  workflow_call:
+    inputs:
+      ref:
+        type: string
+        required: true
+
+permissions:
+  contents: read
+  packages: write
+
+env:
+  UPSTREAM: logicog/RTLPlayground
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/checkout@v4
+        with:
+          repository: ${{ env.UPSTREAM }}
+          ref: ${{ inputs.ref || 'main' }}
+          path: upstream
+
+      - uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and push
+        run: |
+          toolchain="sdcc-$(cat upstream/sdcc/* | cksum | cut -d' ' -f1)"
+          image="ghcr.io/${GITHUB_REPOSITORY_OWNER,,}/rtl-playground-toolchain:$toolchain"
+          docker build -t rtlplayground-base upstream
+          docker build --build-arg SDCC_TOOLCHAIN="$toolchain" -f toolchain/Dockerfile -t "$image" upstream
+          docker push "$image"
+
+      - name: Delete untagged versions
+        uses: actions/delete-package-versions@v5
+        with:
+          package-name: rtl-playground-toolchain
+          package-type: container
+          delete-only-untagged-versions: true
+          min-versions-to-keep: 0
+
+      - name: Keep 3 newest toolchains
+        uses: actions/delete-package-versions@v5
+        with:
+          package-name: rtl-playground-toolchain
+          package-type: container
+          min-versions-to-keep: 3
