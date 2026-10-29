@@ -1,0 +1,874 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-29T16:04:07+00:00",
+  "title": "Design System: RTL Playground Nightly Builds",
+  "extensions": {
+    "colorMeta": {
+      "brand-blue": {
+        "role": "primary",
+        "displayName": "Firmware Blue",
+        "canonical": "#0f4c88",
+        "oklch": "oklch(41.4% 0.116 253)",
+        "tonalRamp": [
+          "oklch(15% 0.039 253)",
+          "oklch(25% 0.058 253)",
+          "oklch(35% 0.077 253)",
+          "oklch(45% 0.097 253)",
+          "oklch(55% 0.116 253)",
+          "oklch(65% 0.097 253)",
+          "oklch(80% 0.068 253)",
+          "oklch(95% 0.039 253)"
+        ],
+        "cssVar": "--brand",
+        "dark": "#164f87",
+        "darkLinkFocus": "#8fc1f3"
+      },
+      "brand-blue-deep": {
+        "role": "primary",
+        "displayName": "Deep Firmware Blue",
+        "canonical": "#0a3866",
+        "oklch": "oklch(33.9% 0.094 253)",
+        "tonalRamp": [
+          "oklch(15% 0.031 253)",
+          "oklch(25% 0.047 253)",
+          "oklch(35% 0.062 253)",
+          "oklch(45% 0.078 253)",
+          "oklch(55% 0.094 253)",
+          "oklch(65% 0.078 253)",
+          "oklch(80% 0.055 253)",
+          "oklch(95% 0.031 253)"
+        ],
+        "cssVar": "--brand-deep",
+        "dark": "#0d3760"
+      },
+      "brand-ink": {
+        "role": "primary",
+        "displayName": "On-Blue White",
+        "canonical": "#ffffff",
+        "oklch": "oklch(100.0% 0.000 90)",
+        "tonalRamp": [
+          "oklch(15% 0.000 90)",
+          "oklch(25% 0.000 90)",
+          "oklch(35% 0.000 90)",
+          "oklch(45% 0.000 90)",
+          "oklch(55% 0.000 90)",
+          "oklch(65% 0.000 90)",
+          "oklch(80% 0.000 90)",
+          "oklch(95% 0.000 90)"
+        ],
+        "cssVar": "--brand-ink"
+      },
+      "brand-soft": {
+        "role": "primary",
+        "displayName": "Band Mist",
+        "canonical": "#cfe0f3",
+        "oklch": "oklch(90.0% 0.032 251)",
+        "tonalRamp": [
+          "oklch(15% 0.011 251)",
+          "oklch(25% 0.016 251)",
+          "oklch(35% 0.021 251)",
+          "oklch(45% 0.027 251)",
+          "oklch(55% 0.032 251)",
+          "oklch(65% 0.027 251)",
+          "oklch(80% 0.019 251)",
+          "oklch(95% 0.011 251)"
+        ],
+        "cssVar": "--brand-soft",
+        "dark": "#bcd6f0"
+      },
+      "ok-green": {
+        "role": "secondary",
+        "displayName": "Built Green",
+        "canonical": "#1d8a4f",
+        "oklch": "oklch(56.0% 0.131 154)",
+        "tonalRamp": [
+          "oklch(15% 0.044 154)",
+          "oklch(25% 0.066 154)",
+          "oklch(35% 0.087 154)",
+          "oklch(45% 0.109 154)",
+          "oklch(55% 0.131 154)",
+          "oklch(65% 0.109 154)",
+          "oklch(80% 0.077 154)",
+          "oklch(95% 0.044 154)"
+        ],
+        "cssVar": "--ok",
+        "dark": "#4cc38a"
+      },
+      "ok-bg": {
+        "role": "secondary",
+        "displayName": "Built Wash",
+        "canonical": "#e2f4ea",
+        "oklch": "oklch(95.1% 0.023 162)",
+        "tonalRamp": [
+          "oklch(15% 0.008 162)",
+          "oklch(25% 0.012 162)",
+          "oklch(35% 0.015 162)",
+          "oklch(45% 0.019 162)",
+          "oklch(55% 0.023 162)",
+          "oklch(65% 0.019 162)",
+          "oklch(80% 0.013 162)",
+          "oklch(95% 0.008 162)"
+        ],
+        "cssVar": "--ok-bg",
+        "dark": "#12301f"
+      },
+      "ok-ink": {
+        "role": "secondary",
+        "displayName": "Built Ink",
+        "canonical": "#0d5a32",
+        "oklch": "oklch(41.3% 0.097 154)",
+        "tonalRamp": [
+          "oklch(15% 0.032 154)",
+          "oklch(25% 0.049 154)",
+          "oklch(35% 0.065 154)",
+          "oklch(45% 0.081 154)",
+          "oklch(55% 0.097 154)",
+          "oklch(65% 0.081 154)",
+          "oklch(80% 0.057 154)",
+          "oklch(95% 0.032 154)"
+        ],
+        "cssVar": "--ok-ink",
+        "dark": "#8fe0b5"
+      },
+      "partial-amber": {
+        "role": "secondary",
+        "displayName": "Partial Amber",
+        "canonical": "#b07800",
+        "oklch": "oklch(61.5% 0.129 76)",
+        "tonalRamp": [
+          "oklch(15% 0.043 76)",
+          "oklch(25% 0.065 76)",
+          "oklch(35% 0.086 76)",
+          "oklch(45% 0.108 76)",
+          "oklch(55% 0.129 76)",
+          "oklch(65% 0.108 76)",
+          "oklch(80% 0.075 76)",
+          "oklch(95% 0.043 76)"
+        ],
+        "cssVar": "--partial",
+        "dark": "#f5b72a"
+      },
+      "partial-bg": {
+        "role": "secondary",
+        "displayName": "Partial Wash",
+        "canonical": "#fdf1d6",
+        "oklch": "oklch(96.1% 0.038 87)",
+        "tonalRamp": [
+          "oklch(15% 0.013 87)",
+          "oklch(25% 0.019 87)",
+          "oklch(35% 0.025 87)",
+          "oklch(45% 0.031 87)",
+          "oklch(55% 0.038 87)",
+          "oklch(65% 0.031 87)",
+          "oklch(80% 0.022 87)",
+          "oklch(95% 0.013 87)"
+        ],
+        "cssVar": "--partial-bg",
+        "dark": "#382a07"
+      },
+      "partial-ink": {
+        "role": "secondary",
+        "displayName": "Partial Ink",
+        "canonical": "#6b4700",
+        "oklch": "oklch(42.8% 0.090 76)",
+        "tonalRamp": [
+          "oklch(15% 0.030 76)",
+          "oklch(25% 0.045 76)",
+          "oklch(35% 0.060 76)",
+          "oklch(45% 0.075 76)",
+          "oklch(55% 0.090 76)",
+          "oklch(65% 0.075 76)",
+          "oklch(80% 0.052 76)",
+          "oklch(95% 0.030 76)"
+        ],
+        "cssVar": "--partial-ink",
+        "dark": "#ffd88a"
+      },
+      "fail-red": {
+        "role": "secondary",
+        "displayName": "Failed Red",
+        "canonical": "#c8372d",
+        "oklch": "oklch(55.5% 0.184 29)",
+        "tonalRamp": [
+          "oklch(15% 0.061 29)",
+          "oklch(25% 0.092 29)",
+          "oklch(35% 0.122 29)",
+          "oklch(45% 0.153 29)",
+          "oklch(55% 0.184 29)",
+          "oklch(65% 0.153 29)",
+          "oklch(80% 0.107 29)",
+          "oklch(95% 0.061 29)"
+        ],
+        "cssVar": "--fail",
+        "dark": "#ef6a5f"
+      },
+      "fail-bg": {
+        "role": "secondary",
+        "displayName": "Failed Wash",
+        "canonical": "#fde6e3",
+        "oklch": "oklch(94.3% 0.026 27)",
+        "tonalRamp": [
+          "oklch(15% 0.009 27)",
+          "oklch(25% 0.013 27)",
+          "oklch(35% 0.017 27)",
+          "oklch(45% 0.021 27)",
+          "oklch(55% 0.026 27)",
+          "oklch(65% 0.021 27)",
+          "oklch(80% 0.015 27)",
+          "oklch(95% 0.009 27)"
+        ],
+        "cssVar": "--fail-bg",
+        "dark": "#3a1714"
+      },
+      "fail-ink": {
+        "role": "secondary",
+        "displayName": "Failed Ink",
+        "canonical": "#8f1f17",
+        "oklch": "oklch(42.7% 0.149 29)",
+        "tonalRamp": [
+          "oklch(15% 0.050 29)",
+          "oklch(25% 0.074 29)",
+          "oklch(35% 0.099 29)",
+          "oklch(45% 0.124 29)",
+          "oklch(55% 0.149 29)",
+          "oklch(65% 0.124 29)",
+          "oklch(80% 0.087 29)",
+          "oklch(95% 0.050 29)"
+        ],
+        "cssVar": "--fail-ink",
+        "dark": "#ffb1aa"
+      },
+      "none-grey": {
+        "role": "secondary",
+        "displayName": "Absent Grey",
+        "canonical": "#8a96a4",
+        "oklch": "oklch(66.8% 0.025 252)",
+        "tonalRamp": [
+          "oklch(15% 0.008 252)",
+          "oklch(25% 0.012 252)",
+          "oklch(35% 0.017 252)",
+          "oklch(45% 0.021 252)",
+          "oklch(55% 0.025 252)",
+          "oklch(65% 0.021 252)",
+          "oklch(80% 0.015 252)",
+          "oklch(95% 0.008 252)"
+        ],
+        "cssVar": "--none",
+        "dark": "#6d7885"
+      },
+      "chip-8372-bg": {
+        "role": "tertiary",
+        "displayName": "8372 Blue Chip",
+        "canonical": "#dfeaf8",
+        "oklch": "oklch(93.3% 0.022 254)",
+        "tonalRamp": [
+          "oklch(15% 0.007 254)",
+          "oklch(25% 0.011 254)",
+          "oklch(35% 0.015 254)",
+          "oklch(45% 0.019 254)",
+          "oklch(55% 0.022 254)",
+          "oklch(65% 0.019 254)",
+          "oklch(80% 0.013 254)",
+          "oklch(95% 0.007 254)"
+        ],
+        "cssVar": "--c8372-bg",
+        "dark": "#1b2f47"
+      },
+      "chip-8372-ink": {
+        "role": "tertiary",
+        "displayName": "8372 Chip Ink",
+        "canonical": "#0d4479",
+        "oklch": "oklch(38.3% 0.105 252)",
+        "tonalRamp": [
+          "oklch(15% 0.035 252)",
+          "oklch(25% 0.053 252)",
+          "oklch(35% 0.070 252)",
+          "oklch(45% 0.088 252)",
+          "oklch(55% 0.105 252)",
+          "oklch(65% 0.088 252)",
+          "oklch(80% 0.061 252)",
+          "oklch(95% 0.035 252)"
+        ],
+        "cssVar": "--c8372-ink",
+        "dark": "#a9cdf5"
+      },
+      "chip-8373-bg": {
+        "role": "tertiary",
+        "displayName": "8373 Green Chip",
+        "canonical": "#dcf1e8",
+        "oklch": "oklch(94.0% 0.025 168)",
+        "tonalRamp": [
+          "oklch(15% 0.008 168)",
+          "oklch(25% 0.013 168)",
+          "oklch(35% 0.017 168)",
+          "oklch(45% 0.021 168)",
+          "oklch(55% 0.025 168)",
+          "oklch(65% 0.021 168)",
+          "oklch(80% 0.015 168)",
+          "oklch(95% 0.008 168)"
+        ],
+        "cssVar": "--c8373-bg",
+        "dark": "#173a2e"
+      },
+      "chip-8373-ink": {
+        "role": "tertiary",
+        "displayName": "8373 Chip Ink",
+        "canonical": "#0b5c40",
+        "oklch": "oklch(42.2% 0.087 163)",
+        "tonalRamp": [
+          "oklch(15% 0.029 163)",
+          "oklch(25% 0.043 163)",
+          "oklch(35% 0.058 163)",
+          "oklch(45% 0.072 163)",
+          "oklch(55% 0.087 163)",
+          "oklch(65% 0.072 163)",
+          "oklch(80% 0.050 163)",
+          "oklch(95% 0.029 163)"
+        ],
+        "cssVar": "--c8373-ink",
+        "dark": "#9be0c1"
+      },
+      "warn-bg": {
+        "role": "neutral",
+        "displayName": "Notice Cream",
+        "canonical": "#fff4d6",
+        "oklch": "oklch(96.8% 0.041 90)",
+        "tonalRamp": [
+          "oklch(15% 0.014 90)",
+          "oklch(25% 0.020 90)",
+          "oklch(35% 0.027 90)",
+          "oklch(45% 0.034 90)",
+          "oklch(55% 0.041 90)",
+          "oklch(65% 0.034 90)",
+          "oklch(80% 0.024 90)",
+          "oklch(95% 0.014 90)"
+        ],
+        "cssVar": "--warn-bg",
+        "dark": "#3d2f05"
+      },
+      "warn-ink": {
+        "role": "neutral",
+        "displayName": "Notice Ink",
+        "canonical": "#5c4300",
+        "oklch": "oklch(39.9% 0.082 84)",
+        "tonalRamp": [
+          "oklch(15% 0.027 84)",
+          "oklch(25% 0.041 84)",
+          "oklch(35% 0.055 84)",
+          "oklch(45% 0.068 84)",
+          "oklch(55% 0.082 84)",
+          "oklch(65% 0.068 84)",
+          "oklch(80% 0.048 84)",
+          "oklch(95% 0.027 84)"
+        ],
+        "cssVar": "--warn-ink",
+        "dark": "#ffe08a"
+      },
+      "warn-edge": {
+        "role": "neutral",
+        "displayName": "Notice Edge",
+        "canonical": "#e8c360",
+        "oklch": "oklch(83.0% 0.125 89)",
+        "tonalRamp": [
+          "oklch(15% 0.042 89)",
+          "oklch(25% 0.062 89)",
+          "oklch(35% 0.083 89)",
+          "oklch(45% 0.104 89)",
+          "oklch(55% 0.125 89)",
+          "oklch(65% 0.104 89)",
+          "oklch(80% 0.073 89)",
+          "oklch(95% 0.042 89)"
+        ],
+        "cssVar": "--warn-edge",
+        "dark": "#8a6a12"
+      },
+      "hero-ok": {
+        "role": "secondary",
+        "displayName": "On-Blue Built",
+        "canonical": "#7ee2a8",
+        "oklch": "oklch(83.6% 0.126 157)",
+        "tonalRamp": [
+          "oklch(15% 0.042 157)",
+          "oklch(25% 0.063 157)",
+          "oklch(35% 0.084 157)",
+          "oklch(45% 0.105 157)",
+          "oklch(55% 0.126 157)",
+          "oklch(65% 0.105 157)",
+          "oklch(80% 0.073 157)",
+          "oklch(95% 0.042 157)"
+        ],
+        "scope": "Strip cells inside the blue hero only (both themes)."
+      },
+      "hero-partial": {
+        "role": "secondary",
+        "displayName": "On-Blue Partial",
+        "canonical": "#f5c04a",
+        "oklch": "oklch(83.5% 0.144 84)",
+        "tonalRamp": [
+          "oklch(15% 0.048 84)",
+          "oklch(25% 0.072 84)",
+          "oklch(35% 0.096 84)",
+          "oklch(45% 0.120 84)",
+          "oklch(55% 0.144 84)",
+          "oklch(65% 0.120 84)",
+          "oklch(80% 0.084 84)",
+          "oklch(95% 0.048 84)"
+        ],
+        "scope": "Strip cells inside the blue hero only (both themes)."
+      },
+      "hero-fail": {
+        "role": "secondary",
+        "displayName": "On-Blue Failed",
+        "canonical": "#ff8f86",
+        "oklch": "oklch(76.8% 0.137 26)",
+        "tonalRamp": [
+          "oklch(15% 0.046 26)",
+          "oklch(25% 0.068 26)",
+          "oklch(35% 0.091 26)",
+          "oklch(45% 0.114 26)",
+          "oklch(55% 0.137 26)",
+          "oklch(65% 0.114 26)",
+          "oklch(80% 0.080 26)",
+          "oklch(95% 0.046 26)"
+        ],
+        "scope": "Strip cells inside the blue hero only (both themes)."
+      },
+      "ground": {
+        "role": "neutral",
+        "displayName": "Cool Ground",
+        "canonical": "#f6f8fb",
+        "oklch": "oklch(97.8% 0.005 258)",
+        "tonalRamp": [
+          "oklch(15% 0.002 258)",
+          "oklch(25% 0.002 258)",
+          "oklch(35% 0.003 258)",
+          "oklch(45% 0.004 258)",
+          "oklch(55% 0.005 258)",
+          "oklch(65% 0.004 258)",
+          "oklch(80% 0.003 258)",
+          "oklch(95% 0.002 258)"
+        ],
+        "cssVar": "--ground",
+        "dark": "#0f1318"
+      },
+      "surface": {
+        "role": "neutral",
+        "displayName": "Panel White",
+        "canonical": "#ffffff",
+        "oklch": "oklch(100.0% 0.000 90)",
+        "tonalRamp": [
+          "oklch(15% 0.000 90)",
+          "oklch(25% 0.000 90)",
+          "oklch(35% 0.000 90)",
+          "oklch(45% 0.000 90)",
+          "oklch(55% 0.000 90)",
+          "oklch(65% 0.000 90)",
+          "oklch(80% 0.000 90)",
+          "oklch(95% 0.000 90)"
+        ],
+        "cssVar": "--surface",
+        "dark": "#161b22"
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Graphite Ink",
+        "canonical": "#141a22",
+        "oklch": "oklch(21.5% 0.018 256)",
+        "tonalRamp": [
+          "oklch(15% 0.006 256)",
+          "oklch(25% 0.009 256)",
+          "oklch(35% 0.012 256)",
+          "oklch(45% 0.015 256)",
+          "oklch(55% 0.018 256)",
+          "oklch(65% 0.015 256)",
+          "oklch(80% 0.011 256)",
+          "oklch(95% 0.006 256)"
+        ],
+        "cssVar": "--ink",
+        "dark": "#e7ebf0"
+      },
+      "quiet": {
+        "role": "neutral",
+        "displayName": "Slate Quiet",
+        "canonical": "#566170",
+        "oklch": "oklch(48.9% 0.028 256)",
+        "tonalRamp": [
+          "oklch(15% 0.009 256)",
+          "oklch(25% 0.014 256)",
+          "oklch(35% 0.018 256)",
+          "oklch(45% 0.023 256)",
+          "oklch(55% 0.028 256)",
+          "oklch(65% 0.023 256)",
+          "oklch(80% 0.016 256)",
+          "oklch(95% 0.009 256)"
+        ],
+        "cssVar": "--quiet",
+        "dark": "#9ba6b3"
+      },
+      "rule": {
+        "role": "neutral",
+        "displayName": "Hairline",
+        "canonical": "#e1e6ec",
+        "oklch": "oklch(92.3% 0.010 253)",
+        "tonalRamp": [
+          "oklch(15% 0.003 253)",
+          "oklch(25% 0.005 253)",
+          "oklch(35% 0.007 253)",
+          "oklch(45% 0.008 253)",
+          "oklch(55% 0.010 253)",
+          "oklch(65% 0.008 253)",
+          "oklch(80% 0.006 253)",
+          "oklch(95% 0.003 253)"
+        ],
+        "cssVar": "--rule",
+        "dark": "#29313b"
+      },
+      "field": {
+        "role": "neutral",
+        "displayName": "Field Grey",
+        "canonical": "#8a96a4",
+        "oklch": "oklch(66.8% 0.025 252)",
+        "tonalRamp": [
+          "oklch(15% 0.008 252)",
+          "oklch(25% 0.012 252)",
+          "oklch(35% 0.017 252)",
+          "oklch(45% 0.021 252)",
+          "oklch(55% 0.025 252)",
+          "oklch(65% 0.021 252)",
+          "oklch(80% 0.015 252)",
+          "oklch(95% 0.008 252)"
+        ],
+        "cssVar": "--field",
+        "dark": "#6d7885"
+      },
+      "head": {
+        "role": "neutral",
+        "displayName": "Header Tint",
+        "canonical": "#f1f4f8",
+        "oklch": "oklch(96.6% 0.006 255)",
+        "tonalRamp": [
+          "oklch(15% 0.002 255)",
+          "oklch(25% 0.003 255)",
+          "oklch(35% 0.004 255)",
+          "oklch(45% 0.005 255)",
+          "oklch(55% 0.006 255)",
+          "oklch(65% 0.005 255)",
+          "oklch(80% 0.004 255)",
+          "oklch(95% 0.002 255)"
+        ],
+        "cssVar": "--head",
+        "dark": "#1b212a"
+      },
+      "row-hover": {
+        "role": "neutral",
+        "displayName": "Row Hover",
+        "canonical": "#eef4fb",
+        "oklch": "oklch(96.5% 0.011 252)",
+        "tonalRamp": [
+          "oklch(15% 0.004 252)",
+          "oklch(25% 0.006 252)",
+          "oklch(35% 0.008 252)",
+          "oklch(45% 0.009 252)",
+          "oklch(55% 0.011 252)",
+          "oklch(65% 0.009 252)",
+          "oklch(80% 0.007 252)",
+          "oklch(95% 0.004 252)"
+        ],
+        "cssVar": "--row",
+        "dark": "#1c2633"
+      },
+      "row-target": {
+        "role": "neutral",
+        "displayName": "Row Target",
+        "canonical": "#f0f6fd",
+        "oklch": "oklch(97.1% 0.011 252)",
+        "tonalRamp": [
+          "oklch(15% 0.004 252)",
+          "oklch(25% 0.006 252)",
+          "oklch(35% 0.008 252)",
+          "oklch(45% 0.009 252)",
+          "oklch(55% 0.011 252)",
+          "oklch(65% 0.009 252)",
+          "oklch(80% 0.007 252)",
+          "oklch(95% 0.004 252)"
+        ],
+        "cssVar": "--tint",
+        "dark": "#17222f"
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Index hero title only; 30px under 640px."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Page titles; 26px under 640px."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Section headings, with optional 15px quiet note."
+      },
+      "title-sm": {
+        "displayName": "Title small",
+        "purpose": "Download card headings."
+      },
+      "wordmark": {
+        "displayName": "Wordmark",
+        "purpose": "Site name in the band."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Running text and table cells; tabular numerals site-wide."
+      },
+      "body-sm": {
+        "displayName": "Body small",
+        "purpose": "Quiet notes, breadcrumbs, meta rows."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Table headers, Copy button."
+      },
+      "badge": {
+        "displayName": "Badge",
+        "purpose": "Status pills and matrix pair links."
+      },
+      "mono": {
+        "displayName": "Mono",
+        "purpose": "Board codes, SHAs, file names, hashes; ligatures off."
+      },
+      "mono-chip": {
+        "displayName": "Mono chip",
+        "purpose": "Chipset pills."
+      }
+    },
+    "fonts": [
+      {
+        "family": "Overpass",
+        "weights": [
+          400,
+          600,
+          800
+        ],
+        "source": "site/fonts (OFL), self-hosted woff2, font-display swap"
+      },
+      {
+        "family": "Overpass Mono",
+        "weights": [
+          400,
+          600
+        ],
+        "source": "site/fonts (OFL), self-hosted woff2, font-display swap"
+      }
+    ],
+    "shadows": [
+      {
+        "name": "panel-lift",
+        "value": "0 1px 2px rgb(16 34 56 / 0.06), 0 4px 14px rgb(16 34 56 / 0.06)",
+        "dark": "0 1px 2px rgb(0 0 0 / 0.3)",
+        "purpose": "Panels and download cards; the only elevation."
+      },
+      {
+        "name": "focus-halo",
+        "value": "0 0 0 3px var(--brand-soft)",
+        "purpose": "Filter input focus."
+      },
+      {
+        "name": "nav-current",
+        "value": "inset 0 -3px 0 var(--brand-ink)",
+        "purpose": "Active nav link underline in the band."
+      }
+    ],
+    "focus": {
+      "value": "outline: 2px solid var(--focus); outline-offset: 2px; border-radius: 3px",
+      "onBlue": "outline-color: var(--brand-ink)"
+    },
+    "motion": [
+      {
+        "name": "ease-standard",
+        "value": "150ms ease-out",
+        "purpose": "Strip cell hover lift and brighten; download button background and press."
+      },
+      {
+        "name": "cell-hover",
+        "value": "transform: translateY(-2px); filter: brightness(1.1)",
+        "purpose": "Linked history cell hover."
+      },
+      {
+        "name": "press",
+        "value": "transform: translateY(1px)",
+        "purpose": "Download button :active."
+      },
+      {
+        "name": "reduced-motion",
+        "value": "transition: none",
+        "purpose": "All transitions removed under prefers-reduced-motion."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "phone",
+        "value": "max-width: 640px"
+      },
+      {
+        "name": "coarse",
+        "value": "pointer: coarse"
+      },
+      {
+        "name": "hover",
+        "value": "hover: hover"
+      }
+    ],
+    "layout": {
+      "container": "1120px",
+      "gutter": "20px",
+      "matrix": "full width",
+      "stripMaxWidth": "720px",
+      "stripColumns": 14,
+      "picksGrid": "repeat(auto-fit, minmax(300px, 1fr)), gap 16px"
+    },
+    "theming": {
+      "mechanism": "Custom properties on :root; dark set under @media (prefers-color-scheme: dark) :root:not([data-theme=\"light\"])",
+      "colorScheme": [
+        "light",
+        "dark"
+      ]
+    }
+  },
+  "components": [
+    {
+      "name": "Band Navigation",
+      "kind": "nav",
+      "refersTo": "band",
+      "description": "Brand-blue bar with wordmark and site nav; current page underlined.",
+      "html": "<header class=\"ds-band\"><a class=\"ds-name\" href=\"#\">RTL Playground Nightly Builds</a><nav><a href=\"#\" aria-current=\"page\">Models</a><a href=\"#\">Matrix</a><a href=\"#\">Releases</a><a href=\"#\">Upstream</a></nav></header>",
+      "css": ".ds-band{display:flex;flex-wrap:wrap;align-items:center;gap:0 28px;padding:0 20px;background:var(--brand,#0f4c88);color:#fff;font-family:Overpass,system-ui,sans-serif}.ds-band a{color:inherit;text-decoration:none}.ds-name{font-weight:800;font-size:18px;letter-spacing:-0.01em;padding:14px 0;margin-right:auto}.ds-band nav{display:flex;gap:0 22px;font-weight:600}.ds-band nav a{padding:14px 0;color:var(--brand-soft,#cfe0f3)}.ds-band nav a:hover,.ds-band nav a[aria-current]{color:#fff}.ds-band nav a[aria-current]{box-shadow:inset 0 -3px 0 #fff}.ds-band a:focus-visible{outline:2px solid #fff;outline-offset:2px;border-radius:3px}"
+    },
+    {
+      "name": "History Strip",
+      "kind": "custom",
+      "refersTo": "status-cell-ok",
+      "description": "Signature 14-night build strip: green built, amber some failed, red failed, dashed grey not included.",
+      "html": "<div class=\"ds-hs\"><ol class=\"ds-strip\"><li><a href=\"#\" class=\"ds-cell \" aria-label=\"\"></a></li><li><a href=\"#\" class=\"ds-cell \" aria-label=\"\"></a></li><li><a href=\"#\" class=\"ds-cell partial\" aria-label=\"partial\"></a></li><li><a href=\"#\" class=\"ds-cell \" aria-label=\"\"></a></li><li><a href=\"#\" class=\"ds-cell fail\" aria-label=\"fail\"></a></li><li><a href=\"#\" class=\"ds-cell \" aria-label=\"\"></a></li><li><a href=\"#\" class=\"ds-cell none\" aria-label=\"none\"></a></li><li><a href=\"#\" class=\"ds-cell \" aria-label=\"\"></a></li><li><a href=\"#\" class=\"ds-cell \" aria-label=\"\"></a></li><li><a href=\"#\" class=\"ds-cell partial\" aria-label=\"partial\"></a></li><li><a href=\"#\" class=\"ds-cell \" aria-label=\"\"></a></li><li><a href=\"#\" class=\"ds-cell \" aria-label=\"\"></a></li><li><a href=\"#\" class=\"ds-cell \" aria-label=\"\"></a></li><li><a href=\"#\" class=\"ds-cell \" aria-label=\"\"></a></li></ol><div class=\"ds-foot\"><span>16 Oct</span><span>29 Oct</span></div><p class=\"ds-keys\"><span><i class=\"ds-cell\"></i>All built</span><span><i class=\"ds-cell partial\"></i>Some failed</span><span><i class=\"ds-cell fail\"></i>All failed</span><span><i class=\"ds-cell none\"></i>Not included</span></p></div>",
+      "css": ".ds-hs{max-width:720px;font-family:Overpass,system-ui,sans-serif}.ds-strip{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(14,1fr);gap:4px}.ds-cell{display:block;height:28px;border-radius:4px;background:var(--ok,#1d8a4f);transition:transform 150ms ease-out,filter 150ms ease-out}a.ds-cell:hover{transform:translateY(-2px);filter:brightness(1.1)}a.ds-cell:focus-visible{outline:2px solid var(--focus,#0f4c88);outline-offset:2px}.ds-cell.partial{background:var(--partial,#b07800)}.ds-cell.fail{background:var(--fail,#c8372d)}.ds-cell.none{background:transparent;border:2px dashed var(--none,#8a96a4)}.ds-foot{display:flex;justify-content:space-between;margin-top:8px;font-size:13px;color:var(--quiet,#566170)}.ds-keys{display:flex;gap:6px 16px;flex-wrap:wrap;margin:8px 0 0;font-size:13px;color:var(--quiet,#566170)}.ds-keys span{display:inline-flex;align-items:center;gap:6px}.ds-keys .ds-cell{width:12px;height:12px;border-radius:3px}.ds-keys .ds-cell.none{border-width:1.5px}"
+    },
+    {
+      "name": "Chipset Chips",
+      "kind": "chip",
+      "refersTo": "chip-8372",
+      "description": "Mono pill per chipset: blue 8372, green 8373.",
+      "html": "<span class=\"ds-chip ds-8372\">RTL8372</span> <span class=\"ds-chip ds-8373\">RTL8373</span>",
+      "css": ".ds-chip{display:inline-block;font-family:'Overpass Mono',ui-monospace,monospace;font-size:12px;font-weight:600;padding:2px 8px;border-radius:999px;line-height:1.5}.ds-8372{background:var(--c8372-bg,#dfeaf8);color:var(--c8372-ink,#0d4479)}.ds-8373{background:var(--c8373-bg,#dcf1e8);color:var(--c8373-ink,#0b5c40)}"
+    },
+    {
+      "name": "Status Badges",
+      "kind": "chip",
+      "refersTo": "badge-failed",
+      "description": "Red Failed pill for missing builds; amber pill marks commits touching this model.",
+      "html": "<span class=\"ds-badge ds-fail\">Failed</span> <span class=\"ds-badge ds-mine\">this model</span>",
+      "css": ".ds-badge{display:inline-block;font-family:Overpass,system-ui,sans-serif;font-size:12px;font-weight:700;padding:2px 9px;border-radius:999px;line-height:1.5}.ds-fail{background:var(--fail-bg,#fde6e3);color:var(--fail-ink,#8f1f17)}.ds-mine{background:var(--partial-bg,#fdf1d6);color:var(--partial-ink,#6b4700)}"
+    },
+    {
+      "name": "OEM Download Card",
+      "kind": "card",
+      "refersTo": "pick-card-primary",
+      "description": "Primary pick, always first: 2px blue border, solid blue download button, mono file name, SHA-256 with Copy.",
+      "html": "<div class=\"ds-pick ds-primary\"><h3>OEM upgrade</h3><p>First install. Your switch still runs its original firmware: upload this once there.</p><a class=\"ds-dl\" href=\"#\">Download OEM upgrade <span>528 KiB</span></a><span class=\"ds-fname\">rtlplayground-v0.1.0-1b29fb6-20261028-GT_ST024M-oem_upgrade.bin</span><p class=\"ds-hash\"><span>SHA-256</span> <code>bc671f7f54010793…</code><button class=\"ds-copy\">Copy</button></p></div>",
+      "css": ".ds-pick{background:var(--surface,#fff);border:1px solid var(--rule,#e1e6ec);border-radius:12px;padding:20px 22px;display:flex;flex-direction:column;gap:10px;box-shadow:0 1px 2px rgb(16 34 56/.06),0 4px 14px rgb(16 34 56/.06);font:15px/1.5 Overpass,system-ui,sans-serif;color:var(--ink,#141a22);max-width:420px}.ds-pick h3{font-size:16px;font-weight:800;margin:0}.ds-pick p{margin:0}.ds-primary{border:2px solid var(--line,#0f4c88)}.ds-dl{display:inline-flex;align-items:center;gap:12px;min-height:46px;padding:0 18px;border-radius:8px;font-weight:800;text-decoration:none;align-self:flex-start;background:var(--brand,#0f4c88);border:1px solid var(--brand,#0f4c88);color:#fff;transition:background-color 150ms ease-out,transform 150ms ease-out}.ds-dl:hover{background:var(--brand-deep,#0a3866)}.ds-dl:active{transform:translateY(1px)}.ds-dl:focus-visible,.ds-copy:focus-visible{outline:2px solid var(--focus,#0f4c88);outline-offset:2px}.ds-dl span{font-weight:400;opacity:.85}.ds-fname,.ds-hash code{font-family:'Overpass Mono',ui-monospace,monospace;font-size:13px;overflow-wrap:anywhere}.ds-hash{display:flex;align-items:center;gap:8px;font-size:13px}.ds-hash>span{color:var(--quiet,#566170)}.ds-copy{font:inherit;font-weight:700;color:var(--link,#0f4c88);background:transparent;border:1px solid var(--field,#8a96a4);border-radius:6px;padding:4px 10px;min-height:32px;cursor:pointer}.ds-copy:hover{background:var(--row,#eef4fb)}"
+    },
+    {
+      "name": "Custom Download Button",
+      "kind": "button",
+      "refersTo": "button-download",
+      "description": "Secondary download: blue outline, Row Hover fill on hover.",
+      "html": "<a class=\"ds-dl2\" href=\"#\">Download Custom <span>512 KiB</span></a>",
+      "css": ".ds-dl2{display:inline-flex;align-items:center;gap:12px;min-height:46px;padding:0 18px;border-radius:8px;font:800 15px Overpass,system-ui,sans-serif;text-decoration:none;border:1px solid var(--line,#0f4c88);color:var(--link,#0f4c88);transition:background-color 150ms ease-out,transform 150ms ease-out}.ds-dl2:hover{background:var(--row,#eef4fb)}.ds-dl2:active{transform:translateY(1px)}.ds-dl2:focus-visible{outline:2px solid var(--focus,#0f4c88);outline-offset:2px}.ds-dl2 span{font-weight:400;opacity:.85}"
+    },
+    {
+      "name": "Filter Input",
+      "kind": "input",
+      "refersTo": "input-filter",
+      "description": "Find-your-switch search; blue border plus Band Mist halo on focus.",
+      "html": "<label class=\"ds-filter\"><span>Find your switch</span><input type=\"search\" placeholder=\"Model, board or chipset\"></label>",
+      "css": ".ds-filter{display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;font:800 16px Overpass,system-ui,sans-serif;color:var(--ink,#141a22)}.ds-filter input{font:400 16px Overpass,system-ui,sans-serif;width:min(100%,400px);min-height:46px;padding:8px 14px;border:1px solid var(--field,#8a96a4);border-radius:8px;background:var(--surface,#fff);color:var(--ink,#141a22)}.ds-filter input:focus{border-color:var(--brand,#0f4c88);outline:none;box-shadow:0 0 0 3px var(--brand-soft,#cfe0f3)}"
+    },
+    {
+      "name": "Panel Table",
+      "kind": "card",
+      "refersTo": "panel",
+      "description": "White rounded panel holding a dense table: tinted header, hairline rows, hover row.",
+      "html": "<div class=\"ds-panel\"><table><thead><tr><th>Model</th><th>Chipset</th><th class=\"n\">Latest build</th></tr></thead><tbody><tr><td><a href=\"#\">GoodTop GT-ST018M</a></td><td><code>GT_ST018M</code></td><td class=\"n\">29 Oct</td></tr><tr><td><a href=\"#\">GoodTop GT-ST024M</a></td><td><code>GT_ST024M</code></td><td class=\"n\">using 28 Oct</td></tr></tbody></table></div>",
+      "css": ".ds-panel{background:var(--surface,#fff);border:1px solid var(--rule,#e1e6ec);border-radius:10px;box-shadow:0 1px 2px rgb(16 34 56/.06),0 4px 14px rgb(16 34 56/.06);overflow:hidden;font:15px/1.5 Overpass,system-ui,sans-serif;font-variant-numeric:tabular-nums;color:var(--ink,#141a22)}.ds-panel table{border-collapse:collapse;width:100%}.ds-panel th,.ds-panel td{text-align:left;padding:11px 16px;border-bottom:1px solid var(--rule,#e1e6ec)}.ds-panel tbody tr:last-child>*{border-bottom:0}.ds-panel thead th{font-size:13px;font-weight:700;color:var(--quiet,#566170);background:var(--head,#f1f4f8)}.ds-panel tbody tr:hover>*{background:var(--row,#eef4fb)}.ds-panel td:first-child{font-weight:700}.ds-panel a{color:var(--link,#0f4c88);text-decoration:none}.ds-panel a:hover{text-decoration:underline}.ds-panel code{font-family:'Overpass Mono',ui-monospace,monospace;font-size:13px;color:var(--quiet,#566170)}.ds-panel .n{text-align:right}"
+    },
+    {
+      "name": "Matrix Pair",
+      "kind": "custom",
+      "refersTo": "matrix-pair",
+      "description": "Green-wash tile with stacked OEM and Custom links per night.",
+      "html": "<span class=\"ds-pair\"><a href=\"#\">OEM</a><a href=\"#\">Custom</a></span>",
+      "css": ".ds-pair{display:inline-flex;flex-direction:column;gap:2px;background:var(--ok-bg,#e2f4ea);border-radius:6px;padding:2px;min-width:64px}.ds-pair a{padding:0 5px;line-height:24px;text-align:center;font:700 12px Overpass,system-ui,sans-serif;color:var(--ok-ink,#0d5a32);text-decoration:none;border-radius:4px}.ds-pair a:hover{background:var(--ok,#1d8a4f);color:#fff}.ds-pair a:focus-visible{outline:2px solid var(--focus,#0f4c88);outline-offset:1px}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Plain Build Board",
+    "overview": "A clean, confident build dashboard for a hobby firmware. One brand-blue band runs across the top of every page and, on the index, flows straight into a blue hero that carries the title, the last-run line and a 14-night history strip. Below it, everything sits on a pale-grey ground in white rounded panels: a filter, a dense switch table, download cards, a commit list, a history table. Status is told in plain colour and plain words, never in metaphor.\n\nDensity is deliberate. Tables run tight (11px by 16px cells), numbers are tabular, board codes and hashes drop into Overpass Mono, and the only decoration is the status colour itself. The site started from a departure-timetable concept and was softened, at the owner's request, into a plain dashboard; the timetable conceits (split-flap type, footnote letters, strike-through cancellations) are rejected outright.\n\nThe OEM upgrade card always comes first and is the only one drawn as primary. The wrong file can brick a switch, so the visual hierarchy does the explaining before anyone reads the copy.",
+    "keyCharacteristics": [
+      "One brand-blue band; the index hero extends it full-bleed.",
+      "Pale-grey ground, white panels with a hairline border and a soft two-layer shadow.",
+      "Status colour system: green built, amber some failed, red failed, dashed grey not included.",
+      "Pill chips per chipset (blue 8372, green 8373) and red \"Failed\" pill badges.",
+      "Overpass for words, Overpass Mono for codes, hashes and chip labels.",
+      "OEM card first and primary; Custom second and outlined.",
+      "Full light and dark themes driven by the same custom properties."
+    ],
+    "rules": [
+      {
+        "name": "The Status-Only Colour Rule",
+        "body": "Green, amber and red mean built, some failed and failed. They are never used decoratively, and no other hue may stand in for a status.",
+        "section": "colors"
+      },
+      {
+        "name": "The One Blue Rule",
+        "body": "Firmware Blue is the only brand colour. It marks the band, the hero, links and the one primary action per view; nothing else gets a saturated fill.",
+        "section": "colors"
+      },
+      {
+        "name": "The Paired Theme Rule",
+        "body": "Every colour token has a dark counterpart in the same custom property (see the sidecar). New colours are added to both themes or not at all.",
+        "section": "colors"
+      },
+      {
+        "name": "The Mono-Means-Machine Rule",
+        "body": "Overpass Mono is for strings a user might type, compare or copy (board codes, hashes, file names, chipsets). Human names stay in Overpass.",
+        "section": "typography"
+      },
+      {
+        "name": "The No Uppercase Rule",
+        "body": "Headers and labels are sentence case at weight, never letter-spaced capitals.",
+        "section": "typography"
+      },
+      {
+        "name": "The One Shadow Rule",
+        "body": "There is exactly one elevation. Emphasis comes from border weight (the primary card's 2px blue border), not from a bigger shadow.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "**Do** keep the OEM upgrade card first and primary (2px blue border, solid blue button); Custom follows, outlined.",
+      "**Do** show build state with the four-state cell set: green built, amber some failed, red failed, dashed grey not included.",
+      "**Do** use the on-blue status set (hero-ok, hero-partial, hero-fail) for any strip that sits on the brand blue.",
+      "**Do** mark every failed build with the red \"Failed\" pill, and pair it with the fallback date where one exists.",
+      "**Do** set board codes, hashes, file names and chipsets in Overpass Mono with ligatures off.",
+      "**Do** put new content in white panels on the grey ground, with the one panel shadow and a hairline border.",
+      "**Do** define every new colour as a custom property in both light and dark themes."
+    ],
+    "donts": [
+      "**Don't** add timetable gimmicks: no departure-board or split-flap styling, no footnote letters, no strike-through \"cancelled\" builds. The owner explicitly asked for a plain dashboard.",
+      "**Don't** use green, amber or red for anything other than build status.",
+      "**Don't** introduce a second brand colour or a second saturated fill beside Firmware Blue.",
+      "**Don't** make the Custom card primary or put it before OEM.",
+      "**Don't** stack shadows or raise a card's shadow for emphasis; use border weight.",
+      "**Don't** set labels in letter-spaced uppercase."
+    ]
+  }
+}

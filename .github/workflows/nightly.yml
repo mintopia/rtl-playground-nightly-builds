@@ -13,6 +13,8 @@ on:
 permissions:
   contents: write
   packages: write
+  pages: write
+  id-token: write
 
 concurrency:
   group: nightly
@@ -185,3 +187,7 @@ jobs:
           gh release list --limit 200 --json tagName,createdAt \
             -q "[.[] | select(.tagName | startswith(\"nightly-\"))] | sort_by(.createdAt) | reverse | .[$KEEP_NIGHTLIES:] | .[].tagName" \
             | xargs -r -n1 gh release delete --cleanup-tag -y
+
+  pages:
+    needs: publish
+    uses: ./.github/workflows/pages.yml
