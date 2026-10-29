@@ -96,7 +96,9 @@ p { margin: 0 0 12px; }
 
 /* Build-history strip */
 .history-strip { max-width: 720px; margin: 18px 0 4px; }
+.strip, .strip-foot { width: calc(100% * var(--n) / var(--of)); min-width: 48px; }
 .strip { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(var(--n), 1fr); gap: 4px; }
+.strip-foot span:only-child { white-space: nowrap; }
 .cell { display: block; height: 28px; border-radius: 4px; background: var(--ok); transition: transform 150ms ease-out, filter 150ms ease-out; }
 a.cell:hover { transform: translateY(-2px); filter: brightness(1.1); }
 .cell.partial { background: var(--partial); }
@@ -170,12 +172,12 @@ details .commits { white-space: normal; min-width: 280px; }
 .more { margin-bottom: 12px; }
 
 /* Matrix */
-.matrix-wrap { max-height: 80vh; }
+.matrix-wrap { max-height: 80vh; width: fit-content; max-width: 100%; }
 .matrix { width: auto; }
 .matrix th, .matrix td { padding: 8px 10px; white-space: nowrap; }
 .matrix td { text-align: center; }
 .pair { display: inline-flex; flex-direction: column; gap: 2px; background: var(--ok-bg); border-radius: 6px; padding: 2px; min-width: 64px; }
-.pair a { display: inline-block; padding: 0 5px; line-height: 24px; text-align: center; font-size: 12px; font-weight: 700; color: var(--ok-ink); text-decoration: none; border-radius: 4px; }
+.pair a { display: inline-block; padding: 2px 6px; line-height: 20px; text-align: center; font-size: 12px; font-weight: 700; color: var(--ok-ink); text-decoration: none; border-radius: 4px; }
 .pair a:hover { background: var(--ok); color: var(--surface); }
 .matrix thead th { position: sticky; top: 0; z-index: 1; }
 .matrix tbody th { position: sticky; left: 0; background: var(--surface); font-weight: 700; text-align: left; white-space: normal; min-width: 11em; max-width: 15em; }
@@ -185,7 +187,7 @@ details .commits { white-space: normal; min-width: 280px; }
 footer.wrap { padding-top: 18px; padding-bottom: 36px; border-top: 1px solid var(--rule); color: var(--quiet); font-size: 13px; }
 
 @media (pointer: coarse) {
-  .pair a { line-height: 32px; padding: 0 8px; }
+  .pair a { line-height: 28px; padding: 2px 8px; }
 }
 
 @media (max-width: 640px) {

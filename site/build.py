@@ -12,6 +12,7 @@ from pathlib import Path
 
 UPSTREAM = "logicog/RTLPlayground"
 SITE = "RTL Playground Nightly Builds"
+RETAIN = 14  # dated nightlies kept by nightly.yml (KEEP_NIGHTLIES)
 ASSET_RE = re.compile(r"^rtlplayground-(.+)-(\d{8})-(.+?)(-oem_upgrade)?\.bin$")
 TAG_RE = re.compile(r"^nightly-(\d{8})-([0-9a-f]+)$")
 SHA_RE = re.compile(r"\b[0-9a-f]{40}\b")
@@ -147,9 +148,11 @@ def strip(stops, legend):
         attrs = f'class="cell {state}" aria-label="{e(label)}" title="{e(label)}"'
         cells.append(f'<li><a href="{e(href)}" {attrs}></a></li>' if href else f'<li><span role="img" {attrs}></span></li>')
     first, last = stops[-1][0], stops[0][0]
+    dates = f'<span>{fmt(first)}</span><span>{fmt(last)}</span>' if len(stops) > 1 else f'<span>{fmt(last)}</span>'
     keys = "".join(f'<span><i class="cell {k}"></i>{t}</span>' for k, t in legend)
-    return (f'<div class="history-strip"><ol class="strip" style="--n:{len(stops)}">{"".join(cells)}</ol>'
-            f'<div class="strip-foot"><span>{fmt(first)}</span><span>{fmt(last)}</span></div><p class="keys">{keys}</p></div>')
+    sofar = f'<span>{len(stops)} of {RETAIN} nightlies so far.</span>' if len(stops) < RETAIN else ""
+    return (f'<div class="history-strip" style="--n:{len(stops)};--of:{RETAIN}"><ol class="strip">{"".join(cells)}</ol>'
+            f'<div class="strip-foot">{dates}</div><p class="keys">{sofar}{keys}</p></div>')
 
 
 def search_key(*parts):
@@ -187,7 +190,9 @@ def build_index(machines, nightlies):
     rows = []
     for name, m in by_model(machines):
         good = next((n for n in nightlies if name in n["files"]), None)
-        if not good:
+        if not nightlies:
+            cell = '<span class="quiet">Not built yet</span>'
+        elif not good:
             cell = badge("No build", "fail")
         elif good is latest:
             cell = fmt(good["date"])
@@ -223,7 +228,8 @@ def build_model(name, m, nightlies, changes):
         head += strip([(n["date"], state(n), f'#{anchor(n)}', f'{fmt(n["date"])}: {word[state(n)]}') for n in nightlies],
                       [("ok", "Built"), ("fail", "Failed"), ("none", "Not included")])
     if not good:
-        return page(m["model"], "../../", head + '<p class="empty">No successful build in the retained nightlies.</p>', "")
+        msg = "No successful build in the retained nightlies." if nightlies else "No nightly builds yet. The first one runs at 02:00 UTC."
+        return page(m["model"], "../../", head + f'<p class="empty">{msg}</p>', "")
     warn = "" if good is latest else f'<p class="warn">The {fmt(latest["date"])} nightly failed for this switch. Showing the {fmt(good["date"])} build.</p>'
     f = good["files"][name]
     uses = [("oem", "OEM upgrade", "First install. Your switch still runs its original firmware and has a vendor web interface (managed switches): upload this once there."),
@@ -273,6 +279,8 @@ def build_model(name, m, nightlies, changes):
 
 
 def build_matrix(machines, nightlies):
+    if not nightlies:
+        return page("Build matrix", "../", '<h1>Build matrix</h1><p class="empty">No nightly builds yet. The first one runs at 02:00 UTC.</p>', "Matrix")
     cols = "".join(f'<th class="num" scope="col"><a href="{e(n["url"])}">{fmt(n["date"])}</a></th>' for n in nightlies)
     rows = []
     for name, m in by_model(machines):
@@ -289,7 +297,7 @@ def build_matrix(machines, nightlies):
             else:
                 cells.append('<td><span class="quiet" aria-hidden="true">–</span><span class="vh">Not included</span></td>')
         rows.append(f'<tr><th scope="row"><a href="../m/{e(name)}/"><span class="mname">{e(m["model"])}</span><span class="code">{e(name)}</span></a></th>{"".join(cells)}</tr>')
-    body = (f'<h1>Build matrix</h1><p class="summary">{len(machines)} switches across the last {plural(len(nightlies), "nightly", "nightlies")}. '
+    body = (f'<h1>Build matrix</h1><p class="summary">{len(machines)} switches across {"the last " if len(nightlies) > 1 else ""}{plural(len(nightlies), "nightly", "nightlies")}. '
             f'Each night links its OEM upgrade and Custom images.</p><div class="panel scroll matrix-wrap"><table class="matrix"><caption class="vh">Builds per switch and night</caption>'
             f'<thead><tr><th scope="col">Switch</th>{cols}</tr></thead><tbody>{"".join(rows)}</tbody></table></div>')
     return page("Build matrix", "../", body, "Matrix", wide=True)
