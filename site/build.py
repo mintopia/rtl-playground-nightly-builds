@@ -281,7 +281,13 @@ def build_model(name, m, nightlies, changes):
     return page(m["model"], "../../", head + latest_blk + log + history, "", script=COPY_JS)
 
 
+def latest_per_day(nightlies):
+    seen = set()
+    return [n for n in nightlies if not (n["date"] in seen or seen.add(n["date"]))]
+
+
 def build_matrix(machines, nightlies):
+    nightlies = latest_per_day(nightlies)
     if not nightlies:
         return page("Build matrix", "../", '<h1>Build matrix</h1><p class="empty">No nightly builds yet. The first one runs at 02:00 UTC.</p>', "Matrix")
     cols = "".join(f'<th class="num" scope="col"><a href="{e(n["url"])}">{fmt(n["date"])}</a></th>' for n in nightlies)
