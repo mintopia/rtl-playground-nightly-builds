@@ -3,4 +3,5 @@ FROM rtlplayground-base
 ARG SDCC_TOOLCHAIN
 COPY sdcc /tmp/sdcc
 RUN sh /tmp/sdcc/build.sh /opt/toolchain/${SDCC_TOOLCHAIN} && rm -rf /tmp/sdcc
-RUN git config --global --add safe.directory '*'
+# --system: Actions container jobs override HOME, so --global config is ignored
+RUN git config --system --add safe.directory '*'
