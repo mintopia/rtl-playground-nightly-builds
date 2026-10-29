@@ -172,7 +172,7 @@ details .commits { white-space: normal; min-width: 280px; }
 .more { margin-bottom: 12px; }
 
 /* Matrix */
-.matrix-wrap { max-height: 80vh; width: fit-content; max-width: 100%; }
+.matrix-wrap { width: fit-content; max-width: 100%; }
 .matrix { width: auto; }
 .matrix th, .matrix td { padding: 8px 10px; white-space: nowrap; }
 .matrix td { text-align: center; }
@@ -180,10 +180,9 @@ details .commits { white-space: normal; min-width: 280px; }
 .pair { display: inline-flex; flex-direction: column; gap: 2px; background: var(--ok-bg); border-radius: 6px; padding: 2px; min-width: 64px; }
 .pair a { display: inline-block; padding: 2px 6px; line-height: 20px; text-align: center; font-size: 12px; font-weight: 700; color: var(--ok-ink); text-decoration: none; border-radius: 4px; }
 .pair a:hover { background: var(--ok); color: var(--surface); }
-.matrix thead th { position: sticky; top: 0; z-index: 1; }
 .matrix tbody th { position: sticky; left: 0; background: var(--surface); font-weight: 700; text-align: left; white-space: normal; min-width: 11em; max-width: 15em; }
 .matrix tbody th .code { display: block; font-weight: 400; color: var(--quiet); }
-.matrix thead th:first-child { left: 0; z-index: 2; }
+.matrix thead th:first-child { position: sticky; left: 0; z-index: 1; }
 
 footer.wrap { padding-top: 18px; padding-bottom: 36px; border-top: 1px solid var(--rule); color: var(--quiet); font-size: 13px; }
 
@@ -202,7 +201,6 @@ footer.wrap { padding-top: 18px; padding-bottom: 36px; border-top: 1px solid var
   .sub { display: flex; flex-wrap: wrap; gap: 4px 8px; align-items: center; font-weight: 400; color: var(--quiet); margin-top: 3px; }
   .pick { padding: 16px; }
   .pick .dl { align-self: stretch; justify-content: space-between; }
-  .matrix-wrap { max-height: none; }
   .matrix tbody th { position: static; }
   .matrix tbody th .code { display: none; }
   .matrix .mname { display: block; max-width: 11em; overflow: hidden; text-overflow: ellipsis; }
