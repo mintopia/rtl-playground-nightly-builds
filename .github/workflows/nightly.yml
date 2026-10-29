@@ -27,6 +27,7 @@ jobs:
     outputs:
       skip: ${{ steps.info.outputs.skip }}
       sha: ${{ steps.info.outputs.sha }}
+      date: ${{ steps.info.outputs.date }}
       image: ${{ steps.info.outputs.image }}
       image_exists: ${{ steps.info.outputs.image_exists }}
       machines: ${{ steps.info.outputs.machines }}
@@ -66,6 +67,7 @@ jobs:
           {
             echo "skip=$skip"
             echo "sha=$sha"
+            echo "date=$(date -u +%Y%m%d)"
             echo "image=$image"
             echo "image_exists=$image_exists"
             echo "machines=$machines"
@@ -95,6 +97,8 @@ jobs:
         password: ${{ secrets.GITHUB_TOKEN }}
     env:
       M: ${{ matrix.machine }}
+      DATE: ${{ needs.prepare.outputs.date }}
+      SHA: ${{ needs.prepare.outputs.sha }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -113,10 +117,10 @@ jobs:
       - name: Stage
         run: |
           mkdir dist
-          bin=$(ls output/"$M"/rtlplayground-*-"$M".bin)
-          cp "$bin" dist/
+          name="rtlplayground-$DATE-${SHA:0:7}-$M"
+          cp output/"$M"/rtlplayground-*-"$M".bin "dist/$name.bin"
           oem=installer/output/rtlplayground_oem_upgrade.bin
-          if [ -f "$oem" ]; then cp "$oem" "dist/$(basename "$bin" .bin)-oem_upgrade.bin"; fi
+          if [ -f "$oem" ]; then cp "$oem" "dist/$name-oem_upgrade.bin"; fi
 
       - uses: actions/upload-artifact@v4
         with:
@@ -164,8 +168,9 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           GH_REPO: ${{ github.repository }}
           SHA: ${{ needs.prepare.outputs.sha }}
+          DATE: ${{ needs.prepare.outputs.date }}
         run: |
-          tag="nightly-$(date -u +%Y%m%d)-${SHA:0:7}"
+          tag="nightly-$DATE-${SHA:0:7}"
           gh release delete "$tag" --cleanup-tag -y 2>/dev/null || true
           gh release create "$tag" dist/* --prerelease --title "$tag" --notes-file notes.md
 
