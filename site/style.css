@@ -96,14 +96,14 @@ p { margin: 0 0 12px; }
 
 /* Build-history strip */
 .history-strip { max-width: 720px; margin: 18px 0 4px; }
-.strip, .strip-foot { width: calc(100% * var(--n) / var(--of)); min-width: 48px; }
 .strip { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(var(--n), 1fr); gap: 4px; }
-.strip-foot span:only-child { white-space: nowrap; }
 .cell { display: block; height: 28px; border-radius: 4px; background: var(--ok); transition: transform 150ms ease-out, filter 150ms ease-out; }
 a.cell:hover { transform: translateY(-2px); filter: brightness(1.1); }
 .cell.partial { background: var(--partial); }
 .cell.fail { background: var(--fail); }
 .cell.none { background: transparent; border: 2px dashed var(--none); }
+.cell.gap { background: var(--rule); }
+.hero .cell.gap { background: rgb(255 255 255 / 0.14); }
 .strip-foot { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-top: 8px; font-size: 13px; color: var(--quiet); flex-wrap: wrap; }
 .keys { display: flex; gap: 6px 16px; flex-wrap: wrap; margin: 8px 0 0; font-size: 13px; color: var(--quiet); }
 .hero .keys { color: var(--brand-soft); }

@@ -190,4 +190,5 @@ jobs:
 
   pages:
     needs: publish
+    if: ${{ !cancelled() && needs.publish.result == 'success' }}
     uses: ./.github/workflows/pages.yml

@@ -7,7 +7,7 @@ import os
 import re
 import shutil
 import subprocess
-from datetime import datetime
+from datetime import datetime, timedelta
 from pathlib import Path
 
 UPSTREAM = "logicog/RTLPlayground"
@@ -142,17 +142,20 @@ def chip(c):
 
 
 def strip(stops, legend):
-    """Build-history strip, oldest first. stops: (date, state, href, label)."""
+    """Last RETAIN days ending at the newest nightly. stops: (date, state, href, label), newest first."""
+    by_day = {}
+    for d, state, href, label in stops:
+        by_day.setdefault(d.date(), (state, href, label))
+    end = stops[0][0]
     cells = []
-    for d, state, href, label in reversed(stops):
+    for i in range(RETAIN - 1, -1, -1):
+        day = (end - timedelta(days=i))
+        state, href, label = by_day.get(day.date(), ("gap", None, f"{fmt(day)}: no nightly"))
         attrs = f'class="cell {state}" aria-label="{e(label)}" title="{e(label)}"'
         cells.append(f'<li><a href="{e(href)}" {attrs}></a></li>' if href else f'<li><span role="img" {attrs}></span></li>')
-    first, last = stops[-1][0], stops[0][0]
-    dates = f'<span>{fmt(first)}</span><span>{fmt(last)}</span>' if len(stops) > 1 else f'<span>{fmt(last)}</span>'
-    keys = "".join(f'<span><i class="cell {k}"></i>{t}</span>' for k, t in legend)
-    sofar = f'<span>{len(stops)} of {RETAIN} nightlies so far.</span>' if len(stops) < RETAIN else ""
-    return (f'<div class="history-strip" style="--n:{len(stops)};--of:{RETAIN}"><ol class="strip">{"".join(cells)}</ol>'
-            f'<div class="strip-foot">{dates}</div><p class="keys">{sofar}{keys}</p></div>')
+    keys = "".join(f'<span><i class="cell {k}"></i>{t}</span>' for k, t in legend + [("gap", "No nightly")])
+    return (f'<div class="history-strip"><ol class="strip" style="--n:{RETAIN}">{"".join(cells)}</ol>'
+            f'<div class="strip-foot"><span>{fmt(end - timedelta(days=RETAIN - 1))}</span><span>{fmt(end)}</span></div><p class="keys">{keys}</p></div>')
 
 
 def search_key(*parts):
