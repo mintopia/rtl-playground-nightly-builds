@@ -98,7 +98,6 @@ jobs:
     env:
       M: ${{ matrix.machine }}
       DATE: ${{ needs.prepare.outputs.date }}
-      SHA: ${{ needs.prepare.outputs.sha }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -117,8 +116,11 @@ jobs:
       - name: Stage
         run: |
           mkdir dist
-          name="rtlplayground-$DATE-${SHA:0:7}-$M"
-          cp output/"$M"/rtlplayground-*-"$M".bin "dist/$name.bin"
+          bin=$(ls output/"$M"/rtlplayground-*-"$M".bin)
+          ver=${bin##*/rtlplayground-}
+          ver=${ver%-"$M".bin}
+          name="rtlplayground-$ver-$DATE-$M"
+          cp "$bin" "dist/$name.bin"
           oem=installer/output/rtlplayground_oem_upgrade.bin
           if [ -f "$oem" ]; then cp "$oem" "dist/$name-oem_upgrade.bin"; fi
 
