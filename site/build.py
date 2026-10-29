@@ -290,13 +290,20 @@ def build_matrix(machines, nightlies):
     nightlies = latest_per_day(nightlies)
     if not nightlies:
         return page("Build matrix", "../", '<h1>Build matrix</h1><p class="empty">No nightly builds yet. The first one runs at 02:00 UTC.</p>', "Matrix")
-    cols = "".join(f'<th class="num" scope="col"><a href="{e(n["url"])}">{fmt(n["date"])}</a></th>' for n in nightlies)
+    by_day = {n["date"]: n for n in nightlies}
+    end = nightlies[0]["date"]
+    days = [(end - timedelta(days=i), by_day.get(end - timedelta(days=i))) for i in range(RETAIN)]
+    cols = "".join(f'<th class="num" scope="col"><a href="{e(n["url"])}">{fmt(d)}</a></th>' if n else f'<th class="num gapcol" scope="col">{fmt(d)}</th>'
+                   for d, n in days)
     rows = []
     for name, m in by_model(machines):
         cells = []
-        for n in nightlies:
+        for d, n in days:
+            if not n:
+                cells.append('<td class="gapcol"><span class="vh">No nightly</span></td>')
+                continue
             nf = n["files"].get(name)
-            when = fmt(n["date"])
+            when = fmt(d)
             if nf:
                 links = "".join(f'<a href="{e(nf[k]["browser_download_url"])}" aria-label="{label}, {when}">{short}</a>'
                                 for k, short, label in (("oem", "OEM", "OEM upgrade"), ("custom", "Custom", "Custom")) if k in nf)
@@ -306,7 +313,7 @@ def build_matrix(machines, nightlies):
             else:
                 cells.append('<td><span class="quiet" aria-hidden="true">–</span><span class="vh">Not included</span></td>')
         rows.append(f'<tr><th scope="row"><a href="../m/{e(name)}/"><span class="mname">{e(m["model"])}</span><span class="code">{e(name)}</span></a></th>{"".join(cells)}</tr>')
-    body = (f'<h1>Build matrix</h1><p class="summary">{len(machines)} switches across {"the last " if len(nightlies) > 1 else ""}{plural(len(nightlies), "nightly", "nightlies")}. '
+    body = (f'<h1>Build matrix</h1><p class="summary">{len(machines)} switches over the last {RETAIN} days. '
             f'Each night links its OEM upgrade and Custom images.</p><div class="panel scroll matrix-wrap"><table class="matrix"><caption class="vh">Builds per switch and night</caption>'
             f'<thead><tr><th scope="col">Switch</th>{cols}</tr></thead><tbody>{"".join(rows)}</tbody></table></div>')
     return page("Build matrix", "../", body, "Matrix", wide=True)
