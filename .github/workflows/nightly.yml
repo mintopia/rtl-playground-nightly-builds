@@ -86,6 +86,9 @@ jobs:
     if: ${{ !cancelled() && needs.prepare.outputs.skip != 'true' && needs.toolchain.result != 'failure' }}
     runs-on: ubuntu-latest
     continue-on-error: true
+    defaults:
+      run:
+        shell: bash
     strategy:
       fail-fast: false
       matrix:
