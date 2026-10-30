@@ -1,393 +1,315 @@
 ---
 name: RTL Playground Nightly Builds
-description: A restrained build dashboard for unofficial nightly firmware of Realtek RTL8372/RTL8373 switches.
+description: A plain, well-made dark download page for unofficial RTL8372/RTL8373 switch firmware.
 colors:
-  brand-blue: "#0f4c88"
-  brand-blue-deep: "#0a3866"
-  brand-ink: "#ffffff"
-  brand-soft: "#cfe0f3"
-  ok-green: "#1d8a4f"
-  ok-bg: "#e2f4ea"
-  ok-ink: "#0d5a32"
-  partial-amber: "#b07800"
-  partial-bg: "#fdf1d6"
-  partial-ink: "#6b4700"
-  fail-red: "#c8372d"
-  fail-bg: "#fde6e3"
-  fail-ink: "#8f1f17"
-  none-grey: "#8a96a4"
-  chip-8372-bg: "#dfeaf8"
-  chip-8372-ink: "#0d4479"
-  chip-8373-bg: "#dcf1e8"
-  chip-8373-ink: "#0b5c40"
-  warn-bg: "#fff4d6"
-  warn-ink: "#5c4300"
-  warn-edge: "#e8c360"
-  hero-ok: "#7ee2a8"
-  hero-partial: "#f5c04a"
-  hero-fail: "#ff8f86"
-  ground: "#f6f8fb"
-  surface: "#ffffff"
-  ink: "#141a22"
-  quiet: "#566170"
-  rule: "#e1e6ec"
-  field: "#8a96a4"
-  head: "#f1f4f8"
-  row-hover: "#eef4fb"
-  row-target: "#f0f6fd"
+  ground: "#0b0c0e"
+  surface: "#141518"
+  surface-raised: "#1b1c20"
+  line: "#26272c"
+  line-strong: "#34353b"
+  ink: "#ededef"
+  ink-secondary: "#a1a2aa"
+  ink-muted: "#8a8b93"
+  indigo: "#6e79f6"
+  indigo-fill: "#5059d8"
+  indigo-fill-hover: "#4650c8"
+  indigo-text: "#a5acff"
+  on-indigo: "#ffffff"
+  built-green: "#46a758"
+  failed-red: "#e5484d"
+  failed-red-text: "#ff8589"
+  caution-amber: "#f5a524"
+  caution-amber-text: "#ffc062"
+  favourite-yellow: "#ffd60a"
 typography:
   display:
-    fontFamily: "Overpass, system-ui, -apple-system, Segoe UI, Roboto, sans-serif"
-    fontSize: "40px"
-    fontWeight: 800
-    lineHeight: 1.1
-    letterSpacing: "-0.025em"
-  headline:
-    fontFamily: "Overpass, system-ui, -apple-system, Segoe UI, Roboto, sans-serif"
-    fontSize: "32px"
-    fontWeight: 800
-    lineHeight: 1.1
+    fontFamily: "-apple-system, BlinkMacSystemFont, \"Segoe UI Variable Text\", \"Segoe UI\", Roboto, \"Helvetica Neue\", sans-serif"
+    fontSize: "clamp(28px, 4.2vw, 40px)"
+    fontWeight: 700
+    lineHeight: 1.12
     letterSpacing: "-0.025em"
   title:
-    fontFamily: "Overpass, system-ui, -apple-system, Segoe UI, Roboto, sans-serif"
-    fontSize: "19px"
-    fontWeight: 800
+    fontFamily: "-apple-system, BlinkMacSystemFont, \"Segoe UI Variable Text\", \"Segoe UI\", Roboto, \"Helvetica Neue\", sans-serif"
+    fontSize: "17px"
+    fontWeight: 600
+    lineHeight: 1.3
     letterSpacing: "-0.01em"
-  title-sm:
-    fontFamily: "Overpass, system-ui, -apple-system, Segoe UI, Roboto, sans-serif"
-    fontSize: "16px"
-    fontWeight: 800
-  wordmark:
-    fontFamily: "Overpass, system-ui, -apple-system, Segoe UI, Roboto, sans-serif"
-    fontSize: "18px"
-    fontWeight: 800
-    letterSpacing: "-0.01em"
+  lede:
+    fontFamily: "-apple-system, BlinkMacSystemFont, \"Segoe UI Variable Text\", \"Segoe UI\", Roboto, \"Helvetica Neue\", sans-serif"
+    fontSize: "17px"
+    fontWeight: 400
+    lineHeight: 1.55
   body:
-    fontFamily: "Overpass, system-ui, -apple-system, Segoe UI, Roboto, sans-serif"
+    fontFamily: "-apple-system, BlinkMacSystemFont, \"Segoe UI Variable Text\", \"Segoe UI\", Roboto, \"Helvetica Neue\", sans-serif"
     fontSize: "15px"
     fontWeight: 400
-    lineHeight: 1.5
-    fontFeature: "\"tnum\" 1"
-  body-sm:
-    fontFamily: "Overpass, system-ui, -apple-system, Segoe UI, Roboto, sans-serif"
+    lineHeight: 1.55
+    fontFeature: "\"tnum\""
+  field:
+    fontFamily: "-apple-system, BlinkMacSystemFont, \"Segoe UI Variable Text\", \"Segoe UI\", Roboto, \"Helvetica Neue\", sans-serif"
+    fontSize: "16px"
+    fontWeight: 400
+    lineHeight: 1.55
+  small:
+    fontFamily: "-apple-system, BlinkMacSystemFont, \"Segoe UI Variable Text\", \"Segoe UI\", Roboto, \"Helvetica Neue\", sans-serif"
     fontSize: "14px"
     fontWeight: 400
-    lineHeight: 1.5
+    lineHeight: 1.55
   label:
-    fontFamily: "Overpass, system-ui, -apple-system, Segoe UI, Roboto, sans-serif"
+    fontFamily: "-apple-system, BlinkMacSystemFont, \"Segoe UI Variable Text\", \"Segoe UI\", Roboto, \"Helvetica Neue\", sans-serif"
     fontSize: "13px"
-    fontWeight: 700
-  badge:
-    fontFamily: "Overpass, system-ui, -apple-system, Segoe UI, Roboto, sans-serif"
-    fontSize: "12px"
-    fontWeight: 700
-    lineHeight: 1.5
+    fontWeight: 500
+    lineHeight: 1.4
   mono:
-    fontFamily: "Overpass Mono, ui-monospace, SF Mono, Menlo, Consolas, monospace"
-    fontSize: "13px"
+    fontFamily: "ui-monospace, \"SF Mono\", SFMono-Regular, Menlo, Consolas, monospace"
+    fontSize: "12.5px"
     fontWeight: 400
-    fontFeature: "\"liga\" 0, \"calt\" 0"
-  mono-chip:
-    fontFamily: "Overpass Mono, ui-monospace, SF Mono, Menlo, Consolas, monospace"
-    fontSize: "12px"
-    fontWeight: 600
-    lineHeight: 1.5
+    lineHeight: 1.6
 rounded:
-  key: "3px"
-  cell: "4px"
-  sm: "6px"
-  md: "8px"
-  panel: "10px"
-  card: "12px"
-  pill: "999px"
+  cell: "5px"
+  code: "6px"
+  control-sm: "7px"
+  control: "8px"
+  button: "9px"
+  field: "10px"
+  surface: "12px"
+  pill: "99px"
 spacing:
-  xs: "4px"
-  sm: "8px"
+  xxs: "4px"
+  xs: "8px"
+  sm: "12px"
   md: "16px"
-  gutter: "20px"
-  lg: "32px"
-  section: "44px"
-  xl: "56px"
+  lg: "24px"
+  xl: "32px"
+  xxl: "48px"
+  page-bottom: "64px"
+  page-max: "1040px"
+  label-column: "220px"
 components:
-  band:
-    backgroundColor: "{colors.brand-blue}"
-    textColor: "{colors.brand-ink}"
-    typography: "{typography.wordmark}"
-    padding: "14px 20px"
-  nav-link:
-    textColor: "{colors.brand-soft}"
-    padding: "14px 0"
-  nav-link-current:
-    textColor: "{colors.brand-ink}"
-  hero:
-    backgroundColor: "{colors.brand-blue}"
-    textColor: "{colors.brand-ink}"
-    typography: "{typography.display}"
-    padding: "28px 0 30px"
-  status-cell-ok:
-    backgroundColor: "{colors.ok-green}"
-    rounded: "{rounded.cell}"
-    height: "28px"
-  status-cell-partial:
-    backgroundColor: "{colors.partial-amber}"
-    rounded: "{rounded.cell}"
-    height: "28px"
-  status-cell-fail:
-    backgroundColor: "{colors.fail-red}"
-    rounded: "{rounded.cell}"
-    height: "28px"
-  status-cell-none:
-    rounded: "{rounded.cell}"
-    height: "28px"
+  button-download:
+    backgroundColor: "{colors.indigo-fill}"
+    textColor: "{colors.on-indigo}"
+    rounded: "{rounded.button}"
+    padding: "0 16px"
+    height: "44px"
+  button-download-hover:
+    backgroundColor: "{colors.indigo-fill-hover}"
+  button-copy:
+    backgroundColor: "{colors.surface-raised}"
+    textColor: "{colors.ink}"
+    rounded: "{rounded.control-sm}"
+    padding: "0 12px"
+    height: "32px"
+  input-search:
+    backgroundColor: "{colors.surface}"
+    textColor: "{colors.ink}"
+    rounded: "{rounded.field}"
+    padding: "0 48px 0 44px"
+    height: "48px"
   panel:
     backgroundColor: "{colors.surface}"
-    rounded: "{rounded.panel}"
-  table-head:
-    backgroundColor: "{colors.head}"
-    textColor: "{colors.quiet}"
-    typography: "{typography.label}"
-    padding: "11px 16px"
-  table-cell:
+    rounded: "{rounded.surface}"
+    padding: "24px"
+  list-row:
     textColor: "{colors.ink}"
-    typography: "{typography.body}"
-    padding: "11px 16px"
-  chip-8372:
-    backgroundColor: "{colors.chip-8372-bg}"
-    textColor: "{colors.chip-8372-ink}"
-    typography: "{typography.mono-chip}"
+    padding: "14px 18px"
+    height: "64px"
+  list-row-hover:
+    backgroundColor: "{colors.surface-raised}"
+  favourite-toggle:
+    textColor: "{colors.ink-muted}"
+    rounded: "{rounded.control}"
+    size: "44px"
+  favourite-toggle-on:
+    textColor: "{colors.favourite-yellow}"
+  tag:
+    backgroundColor: "{colors.surface-raised}"
+    textColor: "{colors.ink-secondary}"
     rounded: "{rounded.pill}"
-    padding: "2px 8px"
-  chip-8373:
-    backgroundColor: "{colors.chip-8373-bg}"
-    textColor: "{colors.chip-8373-ink}"
-    typography: "{typography.mono-chip}"
-    rounded: "{rounded.pill}"
-    padding: "2px 8px"
-  badge-failed:
-    backgroundColor: "{colors.fail-bg}"
-    textColor: "{colors.fail-ink}"
-    typography: "{typography.badge}"
-    rounded: "{rounded.pill}"
-    padding: "2px 9px"
-  badge-this-model:
-    backgroundColor: "{colors.partial-bg}"
-    textColor: "{colors.partial-ink}"
-    typography: "{typography.badge}"
-    rounded: "{rounded.pill}"
-    padding: "2px 9px"
-  pick-card:
-    backgroundColor: "{colors.surface}"
-    rounded: "{rounded.card}"
-    padding: "20px 22px"
-  pick-card-primary:
-    backgroundColor: "{colors.surface}"
-    rounded: "{rounded.card}"
-    padding: "20px 22px"
-  button-download-primary:
-    backgroundColor: "{colors.brand-blue}"
-    textColor: "{colors.brand-ink}"
-    rounded: "{rounded.md}"
-    padding: "0 18px"
-    height: "46px"
-  button-download-primary-hover:
-    backgroundColor: "{colors.brand-blue-deep}"
-  button-download:
-    backgroundColor: "{colors.surface}"
-    textColor: "{colors.brand-blue}"
-    rounded: "{rounded.md}"
-    padding: "0 18px"
-    height: "46px"
-  button-download-hover:
-    backgroundColor: "{colors.row-hover}"
-  button-copy:
-    textColor: "{colors.brand-blue}"
-    typography: "{typography.label}"
-    rounded: "{rounded.sm}"
-    padding: "4px 10px"
-    height: "32px"
-  input-filter:
-    backgroundColor: "{colors.surface}"
-    textColor: "{colors.ink}"
-    rounded: "{rounded.md}"
-    padding: "8px 14px"
-    height: "46px"
-    width: "400px"
-  notice-warn:
-    backgroundColor: "{colors.warn-bg}"
-    textColor: "{colors.warn-ink}"
-    rounded: "{rounded.md}"
-    padding: "10px 14px"
-  matrix-pair:
-    backgroundColor: "{colors.ok-bg}"
-    textColor: "{colors.ok-ink}"
-    typography: "{typography.badge}"
-    rounded: "{rounded.sm}"
-    padding: "2px"
+    padding: "1px 8px"
+  board-warning:
+    textColor: "{colors.caution-amber-text}"
+    rounded: "{rounded.field}"
+    padding: "12px 16px"
+  nav-link:
+    textColor: "{colors.ink-secondary}"
+    rounded: "{rounded.control}"
+    padding: "6px 10px"
 ---
 
 # Design System: RTL Playground Nightly Builds
 
 ## Overview
 
-**Creative North Star: "The Plain Build Board"**
+**Creative North Star: "The Well-Made Download Page"**
 
-A clean, confident build dashboard for a hobby firmware. One brand-blue band runs across the top of every page and, on the index, flows straight into a blue hero that carries the title, the last-run line and a 14-night history strip. Below it, everything sits on a pale-grey ground in white rounded panels: a filter, a dense switch table, download cards, a commit list, a history table. Status is told in plain colour and plain words, never in metaphor.
+A neutral, near-black page that does one job: get a switch owner to the one correct file for their board. It plays the category standard straight, in the register of Linear, Vercel, Raycast and Tailscale download pages: one centred column under a sticky top bar, system sans with a real type scale, borders instead of shadows, and a single indigo accent spent on links and the download button. No sidebar, no dashboard chrome, no badge wall.
 
-Density is deliberate. Tables run tight (11px by 16px cells), numbers are tabular, board codes and hashes drop into Overpass Mono, and the only decoration is the status colour itself. The site started from a departure-timetable concept and was softened, at the owner's request, into a plain dashboard; the timetable conceits (split-flap type, footnote letters, strike-through cancellations) are rejected outright.
+Density is calm but not sparse. Headings are short and heavy, supporting text steps down through two greys, and data (board codes, filenames, hashes, commit SHAs) is set in monospace and allowed to wrap rather than truncate. State is carried by a small Radix-like palette: green built, red failed, amber caution. A yellow star marks favourites.
 
-The OEM upgrade card always comes first and is the only one drawn as primary. The wrong file can brick a switch, so the visual hierarchy does the explaining before anyone reads the copy.
+The site is dark only. There is no light theme, and none should be added.
 
 **Key Characteristics:**
-- One brand-blue band; the index hero extends it full-bleed.
-- Pale-grey ground, white panels with a hairline border and a soft two-layer shadow.
-- Status colour system: green built, amber some failed, red failed, dashed grey not included.
-- Pill chips per chipset (blue 8372, green 8373) and red "Failed" pill badges.
-- Overpass for words, Overpass Mono for codes, hashes and chip labels.
-- OEM card first and primary; Custom second and outlined.
-- Full light and dark themes driven by the same custom properties.
+- Dark only; `color-scheme: dark`.
+- One page column, max 1040px, centred; nothing inside it carries its own narrow width cap.
+- Flat tonal layering: ground, surface, raised surface, separated by 1px lines.
+- One accent hue (indigo) for interaction; state colours used only for state.
+- Monospace for machine data; tabular numerals everywhere.
+- Everything that lists nights is ordered newest first.
 
 ## Colors
 
-A cool, low-chroma neutral world with one saturated blue and a strict traffic-light status set; colour carries meaning, not mood.
+A cool near-black neutral ramp with one indigo accent and a small set of state colours.
 
 ### Primary
-- **Firmware Blue** (brand-blue): The band, the index hero, the primary download button, the primary card's 2px border, links and the focus ring. In dark mode the band keeps a near-identical blue while links and focus lift to a light sky (#8fc1f3) for contrast.
-- **Deep Firmware Blue** (brand-blue-deep): Hover state of the primary download button only.
-- **Band Mist** (brand-soft): Secondary text on blue (nav links at rest, hero summary, strip dates and legend) and the 3px focus halo around the filter input.
+- **Indigo** (`indigo`): accent hue for focus ring tint, search focus border, logo mark, row highlight on `:target`, text selection. Not used as a large fill.
+- **Indigo Fill** (`indigo-fill`): the download button background only. White text on it is 5.6:1. Hover deepens to **Indigo Fill Hover** (`indigo-fill-hover`).
+- **On Indigo** (`on-indigo`): white label text on the download button; also the board code inside the amber warning and text selection.
+- **Indigo Text** (`indigo-text`): every link, the expand control, `<summary>`, and the focus outline. Readable on ground and surface.
 
-### Secondary (status)
-- **Built Green** (ok-green), with **Built Wash** (ok-bg) and **Built Ink** (ok-ink): History cells for a fully built night; the matrix OEM/Custom pair tile and its link text.
-- **Partial Amber** (partial-amber), with partial-bg / partial-ink: History cells for a night where some switches failed; also the "this model" commit badge.
-- **Failed Red** (fail-red), with fail-bg / fail-ink: History cells for a failed night; the "Failed" and "No build" pill badges.
-- **Absent Grey** (none-grey): The 2px dashed outline of a "not included" cell. Never filled.
-- **On-blue status set** (hero-ok, hero-partial, hero-fail): Lighter status colours used only for cells inside the blue hero, where the standard set would sink into the band. Not-included cells on blue use translucent white.
+### Secondary
+- **Built Green** (`built-green`): a successful build. Strip cells, matrix dots, state dots.
+- **Failed Red** (`failed-red`): a failed build (cells, dots). Text that says "failed" uses **Failed Red Text** (`failed-red-text`).
+- **Caution Amber** (`caution-amber`): partial builds and the tint behind caution notes. Copy in those notes uses **Caution Amber Text** (`caution-amber-text`).
 
-### Tertiary (chipset)
-- **8372 Blue Chip** (chip-8372-bg / chip-8372-ink) and **8373 Green Chip** (chip-8373-bg / chip-8373-ink): Chipset pills. Each chipset owns one fixed pair.
+### Tertiary
+- **Favourite Yellow** (`favourite-yellow`): the filled star on a favourited switch. Used for nothing else.
 
 ### Neutral
-- **Cool Ground** (ground): Page background behind panels.
-- **Panel White** (surface): Panels, cards, input fill, sticky matrix row headers.
-- **Graphite Ink** (ink): Body text and file names.
-- **Slate Quiet** (quiet): Summaries, table headers, board codes, footnotes.
-- **Hairline** (rule): Panel borders, row dividers, footer rule.
-- **Field Grey** (field): Input and Copy button borders.
-- **Header Tint** (head), **Row Hover** (row-hover), **Row Target** (row-target): Table header fill, hover row and anchored-row highlight.
-- **Notice Cream** (warn-bg / warn-ink / warn-edge): The single fallback notice when the latest nightly failed for a switch.
+- **Ground** (`ground`): page background, also behind the translucent top bar (85% mix + blur).
+- **Surface** (`surface`): panels, lists, tables, search input, download panels.
+- **Surface Raised** (`surface-raised`): hover fill for rows and nav links, tags, copy button, board-code chip, expanded commit rows, "no nightly" strip cells.
+- **Line** (`line`): 1px dividers and surface borders.
+- **Line Strong** (`line-strong`): input and control borders, borders inside raised areas, "no nightly" matrix dot.
+- **Ink** (`ink`): primary text.
+- **Ink Secondary** (`ink-secondary`): ledes, descriptions, table headers, footer, nav links at rest.
+- **Ink Muted** (`ink-muted`): metadata, placeholders, icons at rest, filenames, the dashed "not included" outline. Kept at this value for legibility on surface; do not darken it.
 
 ### Named Rules
-**The Status-Only Colour Rule.** Green, amber and red mean built, some failed and failed. They are never used decoratively, and no other hue may stand in for a status.
+**The One Accent Rule.** Indigo is the only interaction colour. Links, focus and the download button use it; nothing decorative does.
 
-**The One Blue Rule.** Firmware Blue is the only brand colour. It marks the band, the hero, links and the one primary action per view; nothing else gets a saturated fill.
+**The State Means State Rule.** Green, red and amber appear only where they report a build result or a caution. Yellow appears only on an active favourite star.
 
-**The Paired Theme Rule.** Every colour token has a dark counterpart in the same custom property (see the sidecar). New colours are added to both themes or not at all.
+**The Dark Only Rule.** One theme. No `prefers-color-scheme: light` branch, no theme toggle.
 
 ## Typography
 
-**Display Font:** Overpass (with system-ui, -apple-system, Segoe UI, Roboto, sans-serif), self-hosted at 400, 600 and 800.
-**Label/Mono Font:** Overpass Mono (with ui-monospace, SF Mono, Menlo, Consolas, monospace), self-hosted at 400 and 600.
+**Display Font:** system UI sans (`-apple-system`, Segoe UI Variable, Roboto fallback)
+**Body Font:** the same system sans
+**Label/Mono Font:** `ui-monospace` / SF Mono / Menlo / Consolas, ligatures off
 
-**Character:** A highway-signage grotesque with a matching mono: plain, legible at small sizes, and engineered rather than styled. Heavy 800 headings against 400 body give hierarchy without size inflation.
+**Character:** native, quiet and precise. Weight and size do the hierarchy; the mono face marks anything a user might compare or paste.
 
 ### Hierarchy
-- **Display** (800, 40px, 1.1, -0.025em): Index hero title only. 30px under 640px.
-- **Headline** (800, 32px, 1.1, -0.025em): Page title (model name, "Build matrix"). 26px under 640px. Balanced wrapping.
-- **Title** (800, 19px, -0.01em): Section headings ("Latest build", "History"), with an optional 15px quiet note inline on the baseline.
-- **Title small** (800, 16px): Download card headings.
-- **Wordmark** (800, 18px, -0.01em): Site name in the band.
-- **Body** (400, 15px, 1.5, tabular numerals site-wide): All running text and table cells. Card use-text capped at 60ch, commit lists at 82ch.
-- **Body small** (400, 14px): Quiet notes, breadcrumbs, meta rows.
-- **Label** (700, 13px): Table headers, Copy button, strip dates and legend (400).
-- **Badge** (700, 12px): Status pills and matrix pair links.
-- **Mono** (400, 13px, ligatures off): Board codes, SHAs, file names, hashes. **Mono chip** (600, 12px): chipset pills.
+- **Display** (700, clamp 28–40px, 1.12, -0.025em, balanced wrap): one per page; site name on home, model name on model pages, "Build matrix".
+- **Title** (600, 17px, 1.3, -0.01em): section headings (block labels, download panel names, "Favourites").
+- **Lede** (400, 17px; 16px under 640px, ink-secondary, pretty wrap): the single line under the display heading.
+- **Body** (400, 15px, 1.55, tabular numerals): default text; list row names at 550.
+- **Field** (16px): search input text, and the lede under 640px.
+- **Small** (14px): descriptions, nav, notes, tables, commit lists. **Label** (13px): table headers, row metadata, strip dates, legends, footer.
+- **Mono** (12.5–13px, 1.6): board codes, filenames, SHA-256, commit SHAs.
 
 ### Named Rules
-**The Mono-Means-Machine Rule.** Overpass Mono is for strings a user might type, compare or copy (board codes, hashes, file names, chipsets). Human names stay in Overpass.
+**The Underscore Break Rule.** Board codes and filenames break only at underscores (the build inserts break opportunities there); never mid-token, never truncated with an ellipsis. Hashes may break anywhere.
 
-**The No Uppercase Rule.** Headers and labels are sentence case at weight, never letter-spaced capitals.
+**The Tabular Rule.** Numerals are tabular site-wide so dates, sizes and counts align in columns.
 
 ## Layout
 
-A single centred column, max 1120px with a 20px gutter; the matrix page goes full width. The main column opens 32px below the band and closes 56px above the footer; sections are separated by 44px above each title. The index hero cancels the top padding and paints the band colour full-bleed with a border-image so the blue reads as one continuous slab.
+A single centred column (`page-max`, 1040px) with 24px side padding (16px under 640px). The top bar inner row and the footer share the same width, so the header, content and footer edges align. The matrix page uses the same column width as every other page; its table scrolls horizontally inside its own wrapper when it doesn't fit.
 
-The history strip is a 14-column equal-fraction grid with 4px gaps, capped at 720px, with oldest-to-newest dates under its ends and a legend beneath. Download cards use an auto-fit grid (min 300px, 16px gap), so they sit side by side on desktop and stack OEM-over-Custom on phones.
+Pages open with 48px of top padding (32px on mobile) and end with 64px. Content sections on the model page are **blocks**: a two-column grid with a 220px label column (title, one-line description, related links) and a fluid body, a 48px column gap, a 1px top rule and 32px above it. Under 640px blocks collapse to one column and the label's links run horizontally.
 
-Under 640px: tables tighten to 10px by 12px, board and chipset columns collapse into a sub-line under the model name, strip cells drop to 24px, download buttons stretch full card width, and the matrix row header stops being sticky. Coarse pointers get taller matrix links (32px). Tables scroll horizontally inside their panel; the page itself never scrolls sideways.
+Spacing steps are 4, 8, 12, 16, 24, 32, 48 and 64px.
+
+Breakpoints: 640px (single-column blocks, full-width download button, brand subtitle and nav icons hidden), 480px (tighter top bar).
+
+### Named Rules
+**The One Bound Rule.** Only the page container is width-bounded. Text, inputs, panels, lists and tables inside it fill the column; never add a narrow `max-width` to a paragraph, search field or panel.
+
+**The Newest First Rule.** Every history (14-day strip, build table, matrix columns) reads newest on the left or top.
 
 ## Elevation & Depth
 
-Nearly flat. Panels and cards lift off the grey ground with a hairline border plus one soft two-layer shadow; nothing else casts a shadow. In dark mode the shadow collapses to a single tight dark line and depth comes from the surface being a step lighter than the ground.
-
-### Shadow Vocabulary
-- **Panel lift** (`box-shadow: 0 1px 2px rgb(16 34 56 / 0.06), 0 4px 14px rgb(16 34 56 / 0.06)`): Panels and download cards. Dark: `0 1px 2px rgb(0 0 0 / 0.3)`.
-- **Focus halo** (`box-shadow: 0 0 0 3px` Band Mist): Filter input focus only.
-- **Current tab underline** (`box-shadow: inset 0 -3px 0` brand-ink): The active nav link in the band.
+Flat. Depth comes from tonal steps (ground → surface → raised surface) and 1px borders, not shadows. The only blur is the sticky top bar's translucent backdrop. Box-shadow appears only as a state response: the 3px indigo focus halo on the search field and the 3px green halo on a hovered matrix dot.
 
 ### Named Rules
-**The One Shadow Rule.** There is exactly one elevation. Emphasis comes from border weight (the primary card's 2px blue border), not from a bigger shadow.
+**The Borders Not Shadows Rule.** Surfaces are separated by 1px `line` borders. No drop shadows at rest.
 
 ## Shapes
 
-Softly rounded rectangles throughout, with radius growing with the object: 3px legend keys, 4px strip cells, 6px small controls and matrix tiles, 8px inputs, buttons and notices, 10px panels, 12px download cards. Chips and badges are full pills (999px). Borders are 1px hairlines; the only 2px strokes are the primary card border and the dashed outline of a not-included cell.
+Softly rounded rectangles. Large surfaces (panels, lists, tables) use a 12px radius; the search field and caution notes 10px; the download button 9px; small controls 7–8px; inline code chips 6px; strip cells 5px; tags are full pills. Status is drawn as circles: 8px state dots, 14px matrix dots. "No nightly" is a smaller 6px grey dot in the matrix and a raised-surface cell in the strip; "not included" is a hollow outline.
 
 ## Components
 
-### Band and navigation
-- **Style:** Full-width Firmware Blue bar; wordmark left, nav right, wrapping to a second row on phones.
-- **States:** Links rest in Band Mist, turn white on hover; the current page is white with a 3px inset underline. Focus rings switch to white on blue.
-
-### Index hero
-- **Style:** Continues the band in the same blue. Display title, a Band Mist summary with white links, then the history strip using the on-blue status set.
-
-### History strip (signature)
-- **Cells:** 28px tall (24px on phones), 4px radius, one per retained nightly, oldest left. Filled green, amber or red; not-included is a transparent cell with a 2px dashed grey outline.
-- **Behaviour:** Each cell links to its nightly (index) or its history row (model page). Hover lifts 2px and brightens 10% over 150ms ease-out; reduced motion removes it.
-- **Legend:** 12px swatches with 3px radius and a short label, always shown.
-
-### Panels and tables
-- **Panel:** White, 10px radius, hairline border, panel lift shadow, horizontal scroll inside.
-- **Table:** Header row in Header Tint with quiet 13px bold labels; hairline row dividers; hover row in Row Hover (hover-capable pointers only); `:target` row in Row Target. Model names bold, underline only on hover.
+### Buttons
+- **Shape:** gently rounded (9px), 44px tall.
+- **Download (primary):** indigo fill, white 600-weight label, leading download icon, file size pushed right at 80% opacity. Minimum 320px wide on desktop, full width under 640px. The only filled button in the system.
+- **Hover / Focus:** fill darkens; focus shows the global 2px indigo-text outline, 2px offset.
+- **Copy (secondary):** 32px tall, raised-surface fill, strong-line border; border lightens to ink-muted on hover.
+- **Expand (text):** indigo-text label with a chevron that rotates when open; toggles a full-width commit row below its table row.
 
 ### Chips
-- **Style:** Mono 12px/600 pill, 2px by 8px, one fixed colour pair per chipset (blue 8372, green 8373). Informational only, never interactive.
+- **Tag:** pill, raised-surface fill, 12px secondary text. "Check board" variant uses an amber tint with amber text.
+- **Board code:** mono inline chip, raised-surface fill, strong-line border, 6px radius.
 
-### Badges
-- **Failed / No build:** Red wash pill, 12px/700, 2px by 9px. Used wherever a build is missing because it failed: index "Latest build", model history, matrix cells. On the index it is followed by a quiet "using <date>" fallback.
-- **This model:** Amber wash pill beside commits that touched the switch's own files.
+### Cards / Containers
+- **Corner Style:** 12px.
+- **Background:** surface on ground.
+- **Shadow Strategy:** none (see Elevation & Depth).
+- **Border:** 1px line.
+- **Internal Padding:** 24px for download panels (20px mobile); 4px 18px for list-like panels.
 
-### Download cards
-- **OEM upgrade (primary, always first):** White card, 12px radius, 2px Firmware Blue border, 20px by 22px padding. Heading, when-to-use text, a solid blue 46px download button with the file size in lighter weight, the mono file name and a truncated SHA-256 with Copy.
-- **Custom (second):** Same card with a hairline border; download button outlined in blue, Row Hover fill on hover.
-- **Button press:** 1px down on active; background transitions 150ms ease-out.
+### Inputs / Fields
+- **Search:** full column width, 48px tall, surface fill, strong-line border, 10px radius, 16px text, leading search icon, trailing `/` key hint that hides on focus or input.
+- **Focus:** border turns indigo plus a 3px indigo halo at 25%.
 
-### Copy button
-- **Style:** Transparent, 1px Field Grey border, 6px radius, 32px min height, blue 13px bold text. Label swaps to "Copied" for 2s.
+### Navigation
+- **Top bar:** sticky, 56px, translucent ground with blur and a bottom line. Brand (indigo logo mark, "RTL Playground" plus muted "Nightly Builds") on the left; text nav links on the right in ink-secondary, raised-surface hover fill, ink for the current page. Under 640px the subtitle and nav icons drop.
+- **Back link:** small secondary-text link with leading chevron above the model heading.
+- **Footer:** one line of 13px secondary text, same width as the column.
 
-### Filter input
-- **Style:** 46px tall, 8px radius, 1px Field Grey border, white fill, 16px text (no iOS zoom), up to 400px wide beside a bold "Find your switch" label.
-- **Focus:** Border turns blue and a 3px Band Mist halo replaces the outline. `/` focuses it.
+### Switch List
+One surface card of rows, 64px minimum. Each row: model name (550 weight) with optional "Check board" tag, mono board code and chipset underneath, a build state dot and label, a chevron that nudges 2px right on hover, then a 44px favourite star toggle outside the link. The star is ink-muted outline at rest and filled favourite-yellow when pressed. Favourites render as a separate list above "All switches".
 
-### Fallback notice
-- **Style:** Notice Cream fill, 1px warn-edge border, 8px radius. One per model page, only when the latest nightly failed for that switch.
+### Board-Check Warning
+Amber-tinted note (amber 10% over ground, amber 35% border, 10px radius) with a warning icon, amber text and the board code in white mono. Sits under the model lede, before any download; any twin-model note is folded into it.
 
-### Matrix pair
-- **Style:** A green-wash 6px tile holding stacked OEM and Custom links (12px/700, Built Ink); link fills Built Green with white text on hover. Absent nights show a quiet en dash.
+### Download Panels
+OEM panel stacked above Custom, never side by side. Each panel: title, one-line "when to use", "For board `X` only", the download button, the filename in muted mono, then a ruled SHA-256 section with the full hash (select-all) and a Copy button.
+
+### History Strip
+Fourteen equal cells in a grid, newest first, 28px tall, 5px radius: green built, amber partial, red failed, dashed outline not included, raised surface for no nightly. Dates at both ends, legend below. Linked cells brighten on hover. Appears on the home page (under search) and the model page (above the build table).
+
+### Build Table and Matrix
+Tables sit in a surface card with horizontal overflow, 13px secondary headers, 1px row rules, and a 10% indigo highlight on the `:target` row. Commit lists expand into a full-width raised-surface row. The matrix shows one coloured dot per switch per day for all 14 days, with a sticky model column carrying name and board code.
 
 ## Do's and Don'ts
 
 ### Do:
-- **Do** keep the OEM upgrade card first and primary (2px blue border, solid blue button); Custom follows, outlined.
-- **Do** show build state with the four-state cell set: green built, amber some failed, red failed, dashed grey not included.
-- **Do** use the on-blue status set (hero-ok, hero-partial, hero-fail) for any strip that sits on the brand blue.
-- **Do** mark every failed build with the red "Failed" pill, and pair it with the fallback date where one exists.
-- **Do** set board codes, hashes, file names and chipsets in Overpass Mono with ligatures off.
-- **Do** put new content in white panels on the grey ground, with the one panel shadow and a hairline border.
-- **Do** define every new colour as a custom property in both light and dark themes.
+- **Do** keep the site dark only.
+- **Do** let every text block, input, panel and table fill the 1040px column.
+- **Do** stack the OEM panel above the Custom panel, each with "For board X only".
+- **Do** show the full SHA-256 with a Copy button under every download.
+- **Do** order every history newest first and always show all 14 days.
+- **Do** draw the matrix as one dot per day, in the same column width as other pages.
+- **Do** use indigo-fill (white text, 5.6:1) for the download button and indigo-text for links.
+- **Do** use favourite-yellow only for an active favourite star.
+- **Do** break board codes only at underscores.
 
 ### Don't:
-- **Don't** add timetable gimmicks: no departure-board or split-flap styling, no footnote letters, no strike-through "cancelled" builds. The owner explicitly asked for a plain dashboard.
-- **Don't** use green, amber or red for anything other than build status.
-- **Don't** introduce a second brand colour or a second saturated fill beside Firmware Blue.
-- **Don't** make the Custom card primary or put it before OEM.
-- **Don't** stack shadows or raise a card's shadow for emphasis; use border weight.
-- **Don't** set labels in letter-spaced uppercase.
+- **Don't** add a light theme or theme toggle.
+- **Don't** put a narrow max-width on text, the search field or panels inside the page column.
+- **Don't** place OEM and Custom side by side.
+- **Don't** add a sidebar, dashboard chrome or a wall of badges.
+- **Don't** use drop shadows to separate surfaces.
+- **Don't** use green, red or amber decoratively, or indigo as a large background fill.
+- **Don't** darken the muted grey below ink-muted.
+- **Don't** truncate board codes, filenames or hashes.
+
+## Known Gaps
+
+Accessibility items deferred by the user, not rules:
+- Copy result is not announced to assistive tech.
+- The favourite button is announced twice (label plus pressed text).
+- Matrix and strip dots convey state by colour alone (titles and labels exist, no shape difference beyond "none" and "gap").
