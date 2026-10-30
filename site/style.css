@@ -19,6 +19,7 @@ a:hover { text-decoration: underline; text-underline-offset: 3px; text-decoratio
 button, input { font: inherit; color: inherit; }
 code, kbd { font-family: var(--mono); font-size: .86em; font-variant-ligatures: none; }
 .i { flex: none; }
+[hidden] { display: none !important; }
 .vh { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 .mut { color: var(--fg2); }
 .skip { position: absolute; left: 16px; top: -48px; background: var(--surface); border: 1px solid var(--line2); border-radius: 8px; padding: 6px 12px; z-index: 10; }
