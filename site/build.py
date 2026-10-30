@@ -191,9 +191,9 @@ favSec.hidden=![...favUl.children].some(r=>!r.hidden);allHead.hidden=favSec.hidd
 count.textContent=t?`${n} of ${all.length} switches`:'';none.hidden=n>0;history.replaceState(null,'',q.value?'?q='+encodeURIComponent(q.value):location.pathname)}
 addEventListener('click',ev=>{const b=ev.target.closest('.fav');if(!b)return;const inFav=favUl.contains(b),id=b.dataset.id;toggleFav(id);renderFavs();
 if(inFav)(favUl.querySelector(`.fav[data-id="${CSS.escape(id)}"]`)||all.find(r=>r.dataset.id===id).querySelector('.fav')).focus()});
-renderFavs();
 q.addEventListener('input',run);const p=new URLSearchParams(location.search).get('q');if(p){q.value=p;run()}
-addEventListener('keydown',ev=>{if(ev.key==='/'&&document.activeElement!==q){ev.preventDefault();q.focus()}});"""
+addEventListener('keydown',ev=>{if(ev.key==='/'&&document.activeElement!==q){ev.preventDefault();q.focus()}});
+renderFavs();"""
 
 MODEL_JS = FAV_JS + """document.documentElement.classList.add('js');
 for(const b of document.querySelectorAll('.expand'))b.addEventListener('click',()=>{const o=b.getAttribute('aria-expanded')!=='true';
