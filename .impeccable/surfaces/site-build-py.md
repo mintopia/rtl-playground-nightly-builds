@@ -7,18 +7,18 @@ related_targets: []
 
 Scope: GitHub Pages site (index, per-model page, matrix). Mode: Operate.
 Audience/job: switch owner finds their model, picks OEM (first install) or Custom (already on RTL Playground), downloads, verifies SHA-256; maintainer scans build health.
-Constraints: static, no dead links (14 retained nightlies), labels by when to use each file. User pinned: "less gimmicky timetable, just look good"; OEM first.
+Constraints: static, no dead links (14 retained nightlies), labels by when to use each file, dark only. User 2026-10-30: previous designs too busy, generic, file hard to find; wants clean, simple, responsive "crisp product page". Chose the canon direction; craft bar Linear/Vercel and Raycast/Tailscale download pages.
 
 ## Direction contract
 
-THESIS: A clean, confident build dashboard for a hobby firmware: one brand-blue band, white panels, status shown with plain badges and a 14-night history strip. Refuses gimmicks (timetable conceits, footnote letters, strike-through cancellations).
+THESIS: A plain, well-made download page. One column, top nav, no sidebar, no badges wall. Refuses dashboard chrome.
 
-OWN-WORLD: Brand blue #0f4c88 band and index hero; pale-grey ground with white rounded panels; Overpass + Overpass Mono; green/amber/red/dashed-grey status cells; pill chips per chipset (blue 8372, green 8373); red "Failed" pills.
+OWN-WORLD: Neutral dark (#0b0c0e ground, #141518 surface, #26272c lines), indigo accent #6e79f6 for buttons and links only, Radix-like green/red for state. System sans, real type scale, 12px radius surfaces, borders not shadows.
 
-STORY: The visitor finds their switch by name, reads which file fits their situation, downloads it and can copy its SHA-256, and trusts the date and upstream commit behind it.
+STORY: Visitor searches by box name or board code, opens the model, reads which of two files fits, downloads, copies the SHA-256.
 
-FIRST VIEWPORT: Index: band flows into hero (title, last-run line, history strip with legend), then filter and the switch table panel. Model page: name, board/chip/links, its own history strip, then Latest build with two cards, OEM first and primary.
+FIRST VIEWPORT: Index: headline, one-line lede, large search, then the switch list. Model page: back link, model name, board-check lede, amber board-check warning (twin note folded in), then a Download section: OEM panel stacked above Custom (user answer 2026-10-30), each with "For board X only", button, filename, full hash and copy. Home: 14-day strip under search, favourites section above the list.
 
-FORM: Departure timetable, candidate 7 of 7, softened to a plain dashboard at the user's request. seed: none (unavailable)
+FORM: Category standard played straight (canon). seed: none (unavailable)
 
 FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance
