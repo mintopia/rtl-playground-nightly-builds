@@ -37,8 +37,9 @@ jobs:
 
       - name: Build and push
         run: |
+          # Install dir must match upstream Makefile's SDCC_TOOLCHAIN; tag must match nightly.yml prepare
           toolchain="sdcc-$(cat upstream/sdcc/* | cksum | cut -d' ' -f1)"
-          image="ghcr.io/${GITHUB_REPOSITORY_OWNER,,}/rtl-playground-toolchain:$toolchain"
+          image="ghcr.io/${GITHUB_REPOSITORY_OWNER,,}/rtl-playground-toolchain:$(cat upstream/Dockerfile upstream/sdcc/* toolchain/Dockerfile | cksum | cut -d' ' -f1)"
           docker build -t rtlplayground-base upstream
           docker build --build-arg SDCC_TOOLCHAIN="$toolchain" -f toolchain/Dockerfile -t "$image" upstream
           docker push "$image"
