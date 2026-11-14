@@ -35,6 +35,8 @@ jobs:
       machines: ${{ steps.info.outputs.machines }}
     steps:
       - uses: actions/checkout@v4
+
+      - uses: actions/checkout@v4
         with:
           repository: ${{ env.UPSTREAM }}
           path: upstream
@@ -50,13 +52,14 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           FORCE: ${{ inputs.force }}
         run: |
+          # Tag covers every input to the image, so upstream Dockerfile changes force a rebuild
+          image="ghcr.io/${GITHUB_REPOSITORY_OWNER,,}/rtl-playground-toolchain:$(cat upstream/Dockerfile upstream/sdcc/* toolchain/Dockerfile | cksum | cut -d' ' -f1)"
           cd upstream
           sha=$(git rev-parse HEAD)
           last=$(gh release view nightly -R "$GITHUB_REPOSITORY" --json body -q .body 2>/dev/null | grep -oE '[0-9a-f]{40}' | head -1 || true)
           skip=false
           if [ "$sha" = "$last" ] && [ "$FORCE" != "true" ]; then skip=true; fi
 
-          image="ghcr.io/${GITHUB_REPOSITORY_OWNER,,}/rtl-playground-toolchain:sdcc-$(cat sdcc/* | cksum | cut -d' ' -f1)"
           image_exists=false
           if docker manifest inspect "$image" >/dev/null 2>&1; then image_exists=true; fi
 
