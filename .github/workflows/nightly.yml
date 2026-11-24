@@ -63,11 +63,9 @@ jobs:
           image_exists=false
           if docker manifest inspect "$image" >/dev/null 2>&1; then image_exists=true; fi
 
-          # Same rule as upstream Makefile MACHINE_DEFS: has .c and .h, not *_init.c
-          machines=$(cd machine && LC_ALL=C comm -12 \
-            <(ls *.h | sed 's/\.h$//' | LC_ALL=C sort) \
-            <(ls *.c | grep -v '_init\.c$' | sed 's/\.c$//' | LC_ALL=C sort) \
-            | jq -Rsc 'split("\n") | map(select(. != ""))')
+          # Upstream Makefile's MACHINE_REGISTRY
+          machines=$(jq -c '[.[].machine] | sort' machine/machines.json)
+          if [ "$machines" = "[]" ]; then echo "::error::no machines in upstream machine/machines.json"; exit 1; fi
 
           {
             echo "skip=$skip"
