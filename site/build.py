@@ -25,20 +25,14 @@ def parse_asset(name):
 
 
 def load_machines(upstream):
-    mdir = upstream / "machine"
-    names = sorted({p.stem for p in mdir.glob("*.h")} & {p.stem for p in mdir.glob("*.c") if not p.stem.endswith("_init")})
+    registry = json.loads((upstream / "machine" / "machines.json").read_text())
     machines = {}
-    for n in names:
-        h = (mdir / f"{n}.h").read_text(errors="replace")
-        model = re.search(r'#define\s+MACHINE_MODEL\s+"([^"]+)"', h)
-        chip = re.search(r"#define\s+MACHINE_CHIPSET\s+(\w+)", h)
-        files = set()
-        for f in (f"{n}.c", f"{n}.h", f"{n}_init.c"):
-            p = mdir / f
-            if p.exists():
-                files.add(f"machine/{f}")
-                files.add(os.path.relpath(p.resolve(), upstream.resolve()))
-        machines[n] = {"model": model.group(1) if model else n, "chip": chip.group(1) if chip else "", "files": files}
+    for entry in sorted(registry, key=lambda x: x["machine"]):
+        src = f"machine/pcb/{entry['pcb']}.c"
+        p = upstream / src
+        chip = re.search(r"#define\s+MACHINE_CHIPSET\s+(\w+)", p.read_text(errors="replace"))
+        machines[entry["machine"]] = {"model": entry["friendly_name"], "chip": chip.group(1) if chip else "", "src": src,
+                                      "files": {src, os.path.relpath(p.resolve(), upstream.resolve())}}
     for n, m in machines.items():
         m["twins"] = [k for k, o in machines.items() if k != n and o["model"] == m["model"]]
     return machines
@@ -281,7 +275,7 @@ def build_model(name, m, nightlies, changes):
                 f'<a href="https://github.com/{UPSTREAM}/blob/main/doc/supported_devices.md">Not sure? See the supported devices list</a></span></p>'
                 f'{built}{extra}</header>')
     about = block("About this board", "Where this build's board definition comes from upstream.",
-                  f'<dl class="kv panel"><dt>Definition</dt><dd><a href="https://github.com/{UPSTREAM}/blob/main/machine/{e(name)}.c"><code>machine/{e(name)}.c</code></a></dd>'
+                  f'<dl class="kv panel"><dt>Definition</dt><dd><a href="https://github.com/{UPSTREAM}/blob/main/{e(m["src"])}"><code>{e(m["src"])}</code></a></dd>'
                   f'<dt>Devices</dt><dd><a href="https://github.com/{UPSTREAM}/blob/main/doc/supported_devices.md">Supported devices list</a></dd></dl>')
     if not good:
         msg = "No successful build in the last 14 days." if nightlies else NO_NIGHTLY
